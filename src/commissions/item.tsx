@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { CommissionsItemContainer } from "./styles";
 import ReactImageMagnify from "react-image-magnify";
-import Scrollbar from "react-scrollbars-custom";
 
 export default function CommissionsItem() {
   const { push } = useRouter();
