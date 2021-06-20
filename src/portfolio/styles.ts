@@ -133,7 +133,7 @@ export const PortItemContainer = styled.div`
       cursor: pointer;
 
       :hover {
-        background: rgba(0, 0, 0, 0.25);
+        background: rgba(255, 255, 255, 0.25);
       }
     }
     h1 {

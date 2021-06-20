@@ -1,13 +1,15 @@
-import { Variants } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import React from "react";
 import { CommissionsCardContainer } from "./styles";
 import { RippleButton } from "react-ripple-effect";
+import { useRouter } from "next/router";
 
 export interface CommissionCardProps {
   title: string;
   description: string;
   image: string;
   price: number;
+  id: number;
 }
 const itemVar: Variants = {
   hidden: { y: "120%" },
@@ -26,14 +28,25 @@ export default function CommissionCard({
   description,
   image,
   price,
+  id,
 }: CommissionCardProps) {
+  const { push } = useRouter();
+
+  const redirect = () => {
+    push("/commissions/" + id);
+  };
+
   return (
     <div style={{ overflow: "hidden" }}>
-      <CommissionsCardContainer whileTap={{ scale: 0.95 }} variants={itemVar}>
+      <CommissionsCardContainer
+        onClick={redirect}
+        whileTap={{ scale: 0.95 }}
+        variants={itemVar}
+      >
         <img className="miniature" src={image} />
 
         <div className="info">
-          <h3>{title}</h3>
+          <motion.h3 layoutId={id.toString()}>{title}</motion.h3>
           <p>{description}</p>
         </div>
 

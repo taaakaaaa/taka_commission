@@ -24,6 +24,7 @@ export default function Portfolio() {
     ],
     Stream: [
       "https://pbs.twimg.com/media/DH_SdugWAAAhi78?format=jpg&name=large",
+      "https://external-preview.redd.it/oaIeDgnU5J0T6Q04Nq2QLCTs6q4luJtW-3GcIecIrDM.jpg?width=640&crop=smart&auto=webp&s=9ea92399fbba98038baaa06726776618986e6b71",
     ],
   };
 

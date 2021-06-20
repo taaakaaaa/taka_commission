@@ -96,7 +96,7 @@ export default function PortfolioItem() {
               src: "https://pbs.twimg.com/media/E3X2ZhxVkAMHkXR?format=jpg&name=4096x4096",
               width: size.width,
               height: size.height,
-              // isFluidWidth: true,
+              isFluidWidth: false,
             },
             largeImage: {
               src: "https://pbs.twimg.com/media/E3X2ZhxVkAMHkXR?format=jpg&name=4096x4096",

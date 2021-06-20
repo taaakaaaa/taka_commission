@@ -1,5 +1,6 @@
 import { motion, Variants } from "framer-motion";
 import React from "react";
+import Title from "../shared/title";
 import CommissionCard, { CommissionCardProps } from "./card";
 import { CommissionsContainer } from "./styles";
 
@@ -27,6 +28,7 @@ export default function Commission() {
       title: "vTuber",
       items: [
         {
+          id: 1,
           price: 300,
           title: "Full Body",
           description:
@@ -35,6 +37,7 @@ export default function Commission() {
             "https://pbs.twimg.com/media/E3vXJulVoAMb-US?format=jpg&name=4096x4096",
         },
         {
+          id: 2,
           price: 150,
           title: "Half Body",
           description:
@@ -43,6 +46,7 @@ export default function Commission() {
             "https://pbs.twimg.com/media/E3sVndsUcAEJ8XM?format=jpg&name=large",
         },
         {
+          id: 3,
           price: 300,
           title: "Other",
           description:
@@ -56,6 +60,7 @@ export default function Commission() {
       title: "Arte",
       items: [
         {
+          id: 4,
           price: 100,
           title: "Full Body",
           description:
@@ -64,6 +69,7 @@ export default function Commission() {
             "https://pbs.twimg.com/media/E3vs-Y9VUAIeJd3?format=jpg&name=medium",
         },
         {
+          id: 5,
           price: 150,
           title: "Half Body",
           description:
@@ -78,7 +84,7 @@ export default function Commission() {
   return (
     <CommissionsContainer>
       <div className="title">
-        <h1>Commissions</h1>
+        <Title text={"Commissions"} />
       </div>
 
       {commissionData.map(({ title, items }) => (
@@ -88,9 +94,9 @@ export default function Commission() {
           animate="visible"
           variants={containerVar}
         >
-          <h2>{title}</h2>
+          <motion.h2>{title}</motion.h2>
 
-          {items.map((commissionItemData) => (
+          {items.map((commissionItemData, index) => (
             <CommissionCard
               key={commissionItemData.title}
               {...commissionItemData}

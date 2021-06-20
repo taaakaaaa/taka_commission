@@ -37,6 +37,141 @@ export const CommissionsContainer = styled.div`
   }
 `;
 
+export const CommissionsItemContainer = styled.div`
+  max-width: 1366px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  .title {
+    display: flex;
+    width: 100%;
+
+    justify-content: space-between;
+    align-items: center;
+
+    img {
+      padding: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+
+      :hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+    }
+
+    h1 {
+      letter-spacing: 6px;
+      padding: 0px;
+      margin: 0px;
+      font-size: clamp(42px, 7vw, 72px);
+      color: #f9e2fc;
+
+      @media only screen and (max-width: 1400px) {
+        padding: 0px 50px;
+      }
+
+      @media only screen and (max-width: 1024px) {
+        padding: 0px 30px;
+      }
+    }
+  }
+
+  h2 {
+    letter-spacing: 3px;
+    padding: 0px;
+    margin: 0px;
+    font-size: clamp(42px, 7vw, 52px);
+    color: #f9e2fc;
+    text-align: end;
+
+    @media only screen and (max-width: 1400px) {
+      padding: 0px 50px;
+    }
+
+    @media only screen and (max-width: 1024px) {
+      padding: 0px 30px;
+    }
+  }
+
+  p {
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+    font-weight: normal;
+    text-align: right;
+    padding-left: 30px;
+    line-height: 1.8rem;
+    color: #e3e3e3;
+  }
+
+  .images {
+    scroll-snap-type: x mandatory;
+    display: flex;
+    gap: 60px;
+    overflow-x: auto;
+    position: relative;
+
+    .image {
+      scroll-snap-align: start;
+      margin: 30px 0px;
+      border: 1px solid #dd5175;
+      box-sizing: border-box;
+      border-radius: 30px;
+
+      max-width: 878px;
+      height: 611px;
+
+      .info {
+        background-size: cover;
+        object-fit: cover;
+        border-radius: 30px;
+      }
+
+      .info-zoom {
+        border-radius: 30px;
+      }
+    }
+  }
+
+  .buttons {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 30px;
+    align-items: flex-end;
+
+    button {
+      cursor: pointer;
+      width: 50%;
+
+      background: linear-gradient(226.4deg, #6650f3 0%, #f55077 100%);
+      border-radius: 30px;
+      outline: none;
+      border: none;
+
+      color: white;
+
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: 400;
+      letter-spacing: 3px;
+      font-size: 22px;
+
+      padding: 20px 0px;
+    }
+
+    .outline {
+      background: transparent;
+      border: 1px solid white;
+
+      :hover {
+        background: #323232;
+      }
+    }
+  }
+`;
+
 export const CommissionsCardContainer = styled(motion.div)`
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
