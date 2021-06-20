@@ -112,6 +112,28 @@ export const CommissionsItemContainer = styled.div`
     overflow-x: auto;
     position: relative;
 
+    /* width */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #323232;
+      border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
     .image {
       scroll-snap-align: start;
       margin: 30px 0px;

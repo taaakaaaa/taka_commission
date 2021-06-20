@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { CommissionsItemContainer } from "./styles";
 import ReactImageMagnify from "react-image-magnify";
+import Scrollbar from "react-scrollbars-custom";
 
 export default function CommissionsItem() {
   const { push } = useRouter();
@@ -27,11 +28,11 @@ export default function CommissionsItem() {
         />
         <motion.h1>Full Body</motion.h1>
       </div>
-      <div className="images">
+      <motion.div initial={{ x: -100 }} animate={{ x: 0 }} className="images">
         {images.map((image) => (
           <ImageItem key={image} image={image} />
         ))}
-      </div>
+      </motion.div>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
         voluptate ipsa rem ducimus eveniet velit adipisci voluptatibus. Saepe
@@ -40,8 +41,28 @@ export default function CommissionsItem() {
       </p>
       <h2>Interested?</h2>
       <div className="buttons">
-        <button>Ask only for a vTuber</button>
-        <button className="outline">Ask only for a vTuber</button>
+        <motion.button
+          whileHover={{
+            y: -5,
+            filter: "hue-rotate(-30deg)",
+          }}
+          whileTap={{
+            scale: 0.95,
+          }}
+        >
+          Ask only for a vTuber
+        </motion.button>
+        <motion.button
+          whileHover={{
+            y: -5,
+          }}
+          whileTap={{
+            scale: 0.95,
+          }}
+          className="outline"
+        >
+          Add to the card
+        </motion.button>
       </div>
     </CommissionsItemContainer>
   );
