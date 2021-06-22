@@ -40,9 +40,20 @@ export const CommissionsContainer = styled.div`
 export const CommissionsItemContainer = styled.div`
   max-width: 1366px;
   margin: 100px auto;
+  @media only screen and (max-width: 1024px) {
+    margin: 50px auto;
+  }
   display: flex;
   flex-direction: column;
   gap: 60px;
+
+  @media only screen and (max-width: 1024px) {
+    gap: 30px;
+  }
+
+  @media only screen and (max-width: 1366px) {
+    padding: 0px 30px;
+  }
 
   .title {
     display: flex;
@@ -65,16 +76,9 @@ export const CommissionsItemContainer = styled.div`
       letter-spacing: 6px;
       padding: 0px;
       margin: 0px;
-      font-size: clamp(42px, 7vw, 72px);
+      font-size: clamp(32px, 7vw, 72px);
       color: #f9e2fc;
-
-      @media only screen and (max-width: 1400px) {
-        padding: 0px 50px;
-      }
-
-      @media only screen and (max-width: 1024px) {
-        padding: 0px 30px;
-      }
+      text-align: end;
     }
   }
 
@@ -82,27 +86,23 @@ export const CommissionsItemContainer = styled.div`
     letter-spacing: 3px;
     padding: 0px;
     margin: 0px;
-    font-size: clamp(42px, 7vw, 52px);
+    font-size: clamp(32px, 7vw, 52px);
     color: #f9e2fc;
     text-align: end;
-
-    @media only screen and (max-width: 1400px) {
-      padding: 0px 50px;
-    }
-
-    @media only screen and (max-width: 1024px) {
-      padding: 0px 30px;
-    }
   }
 
   p {
-    font-size: 1.25rem;
     letter-spacing: 1px;
     font-weight: normal;
     text-align: right;
     padding-left: 30px;
     line-height: 1.8rem;
     color: #e3e3e3;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+
+    @media only screen and (max-width: 1024px) {
+      padding-left: 0 px;
+    }
   }
 
   .images {
@@ -166,6 +166,10 @@ export const CommissionsItemContainer = styled.div`
     button {
       cursor: pointer;
       width: 50%;
+      @media only screen and (max-width: 1024px) {
+        width: 100%;
+        padding: 15px 30px;
+      }
 
       background: linear-gradient(226.4deg, #6650f3 0%, #f55077 100%);
       border-radius: 30px;
@@ -178,7 +182,7 @@ export const CommissionsItemContainer = styled.div`
       font-style: normal;
       font-weight: 400;
       letter-spacing: 3px;
-      font-size: 22px;
+      font-size: clamp(18px, 3vw, 22px);
 
       padding: 20px 0px;
     }
@@ -208,7 +212,7 @@ export const CommissionsCardContainer = styled(motion.div)`
   height: 280px;
   width: 100%;
   margin-bottom: 50px;
-
+  background: #1f1f1f;
   display: flex;
   gap: 60px;
   align-items: center;
@@ -277,3 +281,31 @@ export const CommissionsCardContainer = styled(motion.div)`
     }
   }
 `;
+
+
+export const CommissionsDialogContainer = styled(motion.div)`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  
+  z-index: 99;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .content{
+    width: 50vw;
+    background: #323232;
+    border-radius: 30px;
+    position: relative;
+    padding: 20px;
+
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      color: red;
+    }
+  }
+`

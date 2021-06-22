@@ -3,9 +3,11 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { CommissionsItemContainer } from "./styles";
 import ReactImageMagnify from "react-image-magnify";
+import DialogCommissions from "./dialog";
 
 export default function CommissionsItem() {
   const { push } = useRouter();
+  const [open, setOpen] = useState(false)
 
   const images = [
     "https://pbs.twimg.com/media/E4PFKpvVgAcshZQ?format=jpg&name=large",
@@ -15,9 +17,19 @@ export default function CommissionsItem() {
     "https://pbs.twimg.com/media/E4Qnu24VIAsi1gi?format=jpg&name=medium",
     "https://pbs.twimg.com/media/E4PgLlnVcAQuNcn?format=jpg&name=large",
     "https://pbs.twimg.com/media/E4P-_zQVcAYoXo3?format=jpg&name=large",
+    "https://pbs.twimg.com/media/E4TNIL7UYAYnPYS?format=jpg&name=medium",
   ];
 
-  return (
+   const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (<>
+    <DialogCommissions handleClickOpen={handleClickOpen} handleClose={handleClose} open={open} />
     <CommissionsItemContainer>
       <div className="title">
         <img
@@ -41,6 +53,7 @@ export default function CommissionsItem() {
       <h2>Interested?</h2>
       <div className="buttons">
         <motion.button
+          onClick={handleClickOpen}
           whileHover={{
             y: -5,
             filter: "hue-rotate(-30deg)",
@@ -52,6 +65,8 @@ export default function CommissionsItem() {
           Ask only for a vTuber
         </motion.button>
         <motion.button
+          onClick={handleClickOpen}
+
           whileHover={{
             y: -5,
           }}
@@ -64,7 +79,7 @@ export default function CommissionsItem() {
         </motion.button>
       </div>
     </CommissionsItemContainer>
-  );
+  </>);
 }
 
 function ImageItem({ image }: { image: string }) {

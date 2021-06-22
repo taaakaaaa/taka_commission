@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PortContainer } from "./styles";
 import { useRouter } from "next/router";
 import { AnimatePresence, motion } from "framer-motion";
+import Title from "../shared/title";
 
 export default function Portfolio() {
   const [active, setActive] = useState(0);
@@ -41,7 +42,7 @@ export default function Portfolio() {
   return (
     <PortContainer>
       <div className="title">
-        <h1>Porftolio</h1>
+        <Title text={"Porftolio"} />
       </div>
       <header>
         <div className="tabs">

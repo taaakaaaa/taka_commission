@@ -28,7 +28,7 @@ const containerVar: Variants = {
     transition: {
       bounce: 0.4,
       type: "spring",
-      delayChildren: 1,
+      delayChildren: 0.3,
       staggerChildren: 0.05,
     },
   },
