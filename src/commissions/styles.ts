@@ -282,19 +282,44 @@ export const CommissionsCardContainer = styled(motion.div)`
   }
 `;
 
+export const Button = styled(motion.div)`
+  cursor: pointer;
+  width: 100%;
+  @media only screen and (max-width: 1024px) {
+    width: 100%;
+    padding: 15px 30px;
+  }
 
+  background: linear-gradient(226.4deg, #6650f3 0%, #f55077 100%);
+  border-radius: 30px;
+  outline: none;
+  border: none;
+
+  color: white;
+
+  font-family: Rubik;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 3px;
+  font-size: clamp(18px, 3vw, 22px);
+
+  padding: 15px 0px;
+  text-align: center;
+  position: sticky;
+  bottom: 0px;
+`;
 export const CommissionsDialogContainer = styled(motion.div)`
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
-  
+
   z-index: 99;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  .content{
+  .content {
     width: 50vw;
     background: #323232;
     border-radius: 30px;
@@ -308,4 +333,4 @@ export const CommissionsDialogContainer = styled(motion.div)`
       color: red;
     }
   }
-`
+`;

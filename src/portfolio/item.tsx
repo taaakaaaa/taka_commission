@@ -28,7 +28,7 @@ export default function PortfolioItem() {
   useEffect(() => {
     const img = new Image();
     img.src =
-      "https://pbs.twimg.com/media/E3X2ZhxVkAMHkXR?format=jpg&name=4096x4096";
+      "https://pbs.twimg.com/media/E4KZPPzUYAU0n_f?format=jpg&name=medium";
 
     img.onload = function () {
       var maxWidth = Math.min(1366, window.innerWidth) - 60; // Max width for the image
@@ -67,7 +67,7 @@ export default function PortfolioItem() {
     };
   }, []);
   const images = [
-    "https://pbs.twimg.com/media/E3X2ZhxVkAMHkXR?format=jpg&name=4096x4096",
+    "https://pbs.twimg.com/media/E4KZPPzUYAU0n_f?format=jpg&name=medium",
     "https://pbs.twimg.com/media/DJJ3blsVAAAix11?format=jpg&name=small",
     "https://pbs.twimg.com/media/E1b9NJmVUAE_4PK?format=jpg&name=large",
     "https://pbs.twimg.com/media/E2n-e-cVEAQ9YdM?format=jpg&name=4096x4096",
@@ -91,15 +91,17 @@ export default function PortfolioItem() {
       >
         <ReactImageMagnify
           {...{
+            imageClassName: "info",
+            enlargedImageContainerClassName: "info-zoom",
             smallImage: {
               alt: "Wristwatch by Ted Baker London",
-              src: "https://pbs.twimg.com/media/E3X2ZhxVkAMHkXR?format=jpg&name=4096x4096",
-              width: size.width,
-              height: size.height,
-              isFluidWidth: false,
+              src: "https://pbs.twimg.com/media/E4KZPPzUYAU0n_f?format=jpg&name=medium",
+              width: osize.width,
+              // height: osize.height,
+              isFluidWidth: true,
             },
             largeImage: {
-              src: "https://pbs.twimg.com/media/E3X2ZhxVkAMHkXR?format=jpg&name=4096x4096",
+              src: "https://pbs.twimg.com/media/E4KZPPzUYAU0n_f?format=jpg&name=medium",
               width: osize.width,
               height: osize.height,
             },

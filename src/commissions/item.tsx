@@ -7,7 +7,7 @@ import DialogCommissions from "./dialog";
 
 export default function CommissionsItem() {
   const { push } = useRouter();
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const images = [
     "https://pbs.twimg.com/media/E4PFKpvVgAcshZQ?format=jpg&name=large",
@@ -20,7 +20,7 @@ export default function CommissionsItem() {
     "https://pbs.twimg.com/media/E4TNIL7UYAYnPYS?format=jpg&name=medium",
   ];
 
-   const handleClickOpen = () => {
+  const handleClickOpen = () => {
     setOpen(true);
   };
 
@@ -28,58 +28,63 @@ export default function CommissionsItem() {
     setOpen(false);
   };
 
-  return (<>
-    <DialogCommissions handleClickOpen={handleClickOpen} handleClose={handleClose} open={open} />
-    <CommissionsItemContainer>
-      <div className="title">
-        <img
-          onClick={() => push("/commissions")}
-          src="/arrow-left.svg"
-          alt="Back"
-        />
-        <motion.h1>Full Body</motion.h1>
-      </div>
-      <motion.div initial={{ x: -100 }} animate={{ x: 0 }} className="images">
-        {images.map((image) => (
-          <ImageItem key={image} image={image} />
-        ))}
-      </motion.div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-        voluptate ipsa rem ducimus eveniet velit adipisci voluptatibus. Saepe
-        culpa qui quisquam dolore. Ad quisquam dolorem unde vitae dolor, minus
-        quod?
-      </p>
-      <h2>Interested?</h2>
-      <div className="buttons">
-        <motion.button
-          onClick={handleClickOpen}
-          whileHover={{
-            y: -5,
-            filter: "hue-rotate(-30deg)",
-          }}
-          whileTap={{
-            scale: 0.95,
-          }}
-        >
-          Ask only for a vTuber
-        </motion.button>
-        <motion.button
-          onClick={handleClickOpen}
-
-          whileHover={{
-            y: -5,
-          }}
-          whileTap={{
-            scale: 0.95,
-          }}
-          className="outline"
-        >
-          Add to the card
-        </motion.button>
-      </div>
-    </CommissionsItemContainer>
-  </>);
+  return (
+    <>
+      <DialogCommissions
+        handleClickOpen={handleClickOpen}
+        handleClose={handleClose}
+        open={open}
+      />
+      <CommissionsItemContainer>
+        <div className="title">
+          <img
+            onClick={() => push("/commissions")}
+            src="/arrow-left.svg"
+            alt="Back"
+          />
+          <motion.h1>Full Body</motion.h1>
+        </div>
+        <motion.div initial={{ x: -100 }} animate={{ x: 0 }} className="images">
+          {images.map((image) => (
+            <ImageItem key={image} image={image} />
+          ))}
+        </motion.div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
+          voluptate ipsa rem ducimus eveniet velit adipisci voluptatibus. Saepe
+          culpa qui quisquam dolore. Ad quisquam dolorem unde vitae dolor, minus
+          quod?
+        </p>
+        <h2>Interested?</h2>
+        <div className="buttons">
+          <motion.button
+            onClick={handleClickOpen}
+            whileHover={{
+              y: -5,
+              filter: "hue-rotate(-30deg)",
+            }}
+            whileTap={{
+              scale: 0.95,
+            }}
+          >
+            Ask only for a vTuber
+          </motion.button>
+          <motion.button
+            onClick={handleClickOpen}
+            whileHover={{
+              y: -5,
+            }}
+            whileTap={{
+              scale: 0.95,
+            }}
+            className="outline"
+          >
+            Add to the card
+          </motion.button>
+        </div>
+      </CommissionsItemContainer>
+    </>
+  );
 }
 
 function ImageItem({ image }: { image: string }) {
@@ -110,7 +115,6 @@ function ImageItem({ image }: { image: string }) {
             alt: "Wristwatch by Ted Baker London",
             src: image,
             width: Math.min(size.width, 378),
-
             height: 611,
           },
           largeImage: {

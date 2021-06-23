@@ -162,11 +162,12 @@ export const PortItemContainer = styled.div`
     background: #323232;
     border-radius: 30px;
     /* max-height: 95vh; */
-    /* img {
+    .info {
       max-width: 100%;
       max-height: 100%;
       max-height: calc(95vh - 100px);
-    } */
+      object-fit: cover;
+    }
   }
   .recomendacoes {
     overflow: hidden;
