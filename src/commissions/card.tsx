@@ -5,11 +5,12 @@ import { RippleButton } from "react-ripple-effect";
 import { useRouter } from "next/router";
 
 export interface CommissionCardProps {
-  title: string;
-  description: string;
+  titulo: string;
+  descricao: string;
   image: string;
-  price: number;
+  preco: number;
   id: number;
+  art: any;
 }
 const itemVar: Variants = {
   hidden: { y: "120%" },
@@ -24,10 +25,10 @@ const itemVar: Variants = {
 };
 
 export default function CommissionCard({
-  title,
-  description,
-  image,
-  price,
+  titulo,
+  descricao,
+  art,
+  preco,
   id,
 }: CommissionCardProps) {
   const { push } = useRouter();
@@ -36,6 +37,8 @@ export default function CommissionCard({
     push("/commissions/" + id);
   };
 
+  console.log(`art`, art);
+
   return (
     <div style={{ overflow: "hidden" }}>
       <CommissionsCardContainer
@@ -43,15 +46,18 @@ export default function CommissionCard({
         whileTap={{ scale: 0.95 }}
         variants={itemVar}
       >
-        <img className="miniature" src={image} />
+        <img
+          className="miniature"
+          src={art?.[Math.floor(Math.random() * art.length)]?.url}
+        />
 
         <div className="info">
-          <motion.h3 layoutId={id.toString()}>{title}</motion.h3>
-          <p>{description}</p>
+          <motion.h3 layoutId={id.toString()}>{titulo}</motion.h3>
+          <p>{descricao.substr(0, 60)}</p>
         </div>
 
         <div className="price">
-          <h4>{price}</h4>
+          <h4>{preco}</h4>
         </div>
       </CommissionsCardContainer>
     </div>

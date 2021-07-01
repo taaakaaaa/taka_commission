@@ -108,6 +108,7 @@ export const CommissionsItemContainer = styled.div`
   .images {
     scroll-snap-type: x mandatory;
     display: flex;
+    justify-content: flex-end;
     gap: 60px;
     overflow-x: auto;
     position: relative;

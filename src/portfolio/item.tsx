@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { ButtonOutlined, PortItemContainer } from "./styles";
 import ReactImageMagnify from "react-image-magnify";
+import { ITakaArt } from "../../pages/portfolio";
 
 function getHeight(length, ratio) {
   var height = length / Math.sqrt(Math.pow(ratio, 2) + 1);
@@ -14,7 +15,7 @@ function getWidth(length, ratio) {
   return Math.round(width);
 }
 
-export default function PortfolioItem() {
+export default function PortfolioItem({ data }: { data: ITakaArt }) {
   const history = useRouter();
   const [size, setSize] = useState({
     width: 500,
@@ -27,8 +28,7 @@ export default function PortfolioItem() {
 
   useEffect(() => {
     const img = new Image();
-    img.src =
-      "https://pbs.twimg.com/media/E4KZPPzUYAU0n_f?format=jpg&name=medium";
+    img.src = data.url;
 
     img.onload = function () {
       var maxWidth = Math.min(1366, window.innerWidth) - 60; // Max width for the image
@@ -95,13 +95,13 @@ export default function PortfolioItem() {
             enlargedImageContainerClassName: "info-zoom",
             smallImage: {
               alt: "Wristwatch by Ted Baker London",
-              src: "https://pbs.twimg.com/media/E4KZPPzUYAU0n_f?format=jpg&name=medium",
+              src: data.url,
               width: osize.width,
               // height: osize.height,
               isFluidWidth: true,
             },
             largeImage: {
-              src: "https://pbs.twimg.com/media/E4KZPPzUYAU0n_f?format=jpg&name=medium",
+              src: data.url,
               width: osize.width,
               height: osize.height,
             },

@@ -4,21 +4,15 @@ import React, { useEffect, useState } from "react";
 import { CommissionsItemContainer } from "./styles";
 import ReactImageMagnify from "react-image-magnify";
 import DialogCommissions from "./dialog";
+import { ICommissionItem } from "../../pages/commissions/[id]";
 
-export default function CommissionsItem() {
+export default function CommissionsItem({
+  data: { art, subTag },
+}: {
+  data: ICommissionItem;
+}) {
   const { push } = useRouter();
   const [open, setOpen] = useState(false);
-
-  const images = [
-    "https://pbs.twimg.com/media/E4PFKpvVgAcshZQ?format=jpg&name=large",
-    "https://pbs.twimg.com/media/E4KZPPzUYAU0n_f?format=jpg&name=medium",
-    "https://pbs.twimg.com/media/E4QdJfsVkAEdJ17?format=jpg&name=large",
-    "https://pbs.twimg.com/media/E4EcvGPVUAA1-Sh?format=jpg&name=4096x4096",
-    "https://pbs.twimg.com/media/E4Qnu24VIAsi1gi?format=jpg&name=medium",
-    "https://pbs.twimg.com/media/E4PgLlnVcAQuNcn?format=jpg&name=large",
-    "https://pbs.twimg.com/media/E4P-_zQVcAYoXo3?format=jpg&name=large",
-    "https://pbs.twimg.com/media/E4TNIL7UYAYnPYS?format=jpg&name=medium",
-  ];
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -42,19 +36,14 @@ export default function CommissionsItem() {
             src="/arrow-left.svg"
             alt="Back"
           />
-          <motion.h1>Full Body</motion.h1>
+          <motion.h1>{subTag.titulo}</motion.h1>
         </div>
         <motion.div initial={{ x: -100 }} animate={{ x: 0 }} className="images">
-          {images.map((image) => (
-            <ImageItem key={image} image={image} />
+          {art.map((image) => (
+            <ImageItem key={image._id} image={image.url} />
           ))}
         </motion.div>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
-          voluptate ipsa rem ducimus eveniet velit adipisci voluptatibus. Saepe
-          culpa qui quisquam dolore. Ad quisquam dolorem unde vitae dolor, minus
-          quod?
-        </p>
+        <p>{subTag.descricao}</p>
         <h2>Interested?</h2>
         <div className="buttons">
           <motion.button

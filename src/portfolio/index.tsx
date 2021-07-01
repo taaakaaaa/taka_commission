@@ -1,41 +1,36 @@
-import React, { useEffect, useState } from "react";
-import { PortContainer } from "./styles";
-import { useRouter } from "next/router";
 import { AnimatePresence, motion } from "framer-motion";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import { ITakaArt, ITakaTag } from "../../pages/portfolio";
+import { instanceSelf } from "../shared/api";
 import Title from "../shared/title";
+import { PortContainer } from "./styles";
 
-export default function Portfolio() {
-  const [active, setActive] = useState(0);
+export interface IPortItem {
+  tag: ITakaTag;
+  art: ITakaArt[];
+}
+
+export default function Portfolio({ tags }: { tags: ITakaTag[] }) {
+  const [active, setActive] = useState<number>(0);
   const history = useRouter();
-
-  const tabs = ["vTuber", "Arte", "Stream"];
-
-  const images = {
-    vTuber: [
-      "https://pbs.twimg.com/media/E2pXr7rVEAEWfNe?format=jpg&name=large",
-      "https://pbs.twimg.com/media/DJJ3blsVAAAix11?format=jpg&name=small",
-      "https://pbs.twimg.com/media/E1b9NJmVUAE_4PK?format=jpg&name=large",
-      "https://pbs.twimg.com/media/E2n-e-cVEAQ9YdM?format=jpg&name=4096x4096",
-      "https://pbs.twimg.com/media/DGm5BxSV0AUtVEe?format=jpg&name=large",
-    ],
-    Arte: [
-      "https://pbs.twimg.com/media/E3H1YrCVEAAj_RJ?format=jpg&name=small",
-      "https://pbs.twimg.com/media/E3EO1aiUUAI-cPd?format=jpg&name=4096x4096",
-      "https://pbs.twimg.com/media/E3Edc13UcAAMpzm?format=jpg&name=large",
-    ],
-    Stream: [
-      "https://pbs.twimg.com/media/DH_SdugWAAAhi78?format=jpg&name=large",
-      "https://external-preview.redd.it/oaIeDgnU5J0T6Q04Nq2QLCTs6q4luJtW-3GcIecIrDM.jpg?width=640&crop=smart&auto=webp&s=9ea92399fbba98038baaa06726776618986e6b71",
-    ],
-  };
+  const [images, setImages] = useState<null | IPortItem[]>();
 
   useEffect(() => {
     return () => {};
   }, [active]);
 
-  const redirect = () => {
-    history.push("/portfolio/0");
+  const redirect = (idtag: string, idart: string) => {
+    history.push(`/portfolio/${idtag}/${idart}`);
   };
+
+  useEffect(() => {
+    const id = tags[active]._id;
+    setImages(null);
+    instanceSelf.get<IPortItem[]>(`/api/portfolio/${id}`).then(({ data }) => {
+      setImages(data);
+    });
+  }, [active]);
 
   const changeActive = (index: number) => setActive(index);
 
@@ -46,13 +41,13 @@ export default function Portfolio() {
       </div>
       <header>
         <div className="tabs">
-          {tabs.map((tab, index) => (
+          {tags.map((tab, index) => (
             <div
               onClick={() => changeActive(index)}
-              className={`tab ${index === active ? "active" : ``}`}
-              key={tab}
+              className={`tab ${index === index ? "active" : ``}`}
+              key={tab._id}
             >
-              {tab}
+              {tab.titulo}
             </div>
           ))}
           <motion.div
@@ -71,16 +66,26 @@ export default function Portfolio() {
           className="content"
           key={active}
         >
-          <h2>Busto</h2>
-          <div className="tabContent">
-            {images[tabs[active]].map((image) => (
-              <img
-                onClick={redirect}
-                key={image}
-                className="item"
-                src={image}
-              />
-            ))}
+          <div>
+            {!images ? (
+              <div>Carregando</div>
+            ) : (
+              images.map((item) => (
+                <div key={item.tag._id}>
+                  <h2>{item.tag.titulo}</h2>
+                  <div className="tabContent">
+                    {item.art.map((artItem) => (
+                      <img
+                        onClick={() => redirect(item.tag._id, artItem._id)}
+                        key={artItem._id}
+                        className="item"
+                        src={artItem.url}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </motion.div>
       </AnimatePresence>

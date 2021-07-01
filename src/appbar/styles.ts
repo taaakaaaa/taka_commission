@@ -1,7 +1,7 @@
-import styled from "styled-components"; 
+import styled from "styled-components";
 
 export const AppBarContainer = styled.div`
-   height: 50px;
+  height: 50px;
   position: sticky;
   top: 0;
   z-index: 3;
@@ -23,6 +23,7 @@ export const AppBarContainer = styled.div`
     .items {
       display: flex;
       height: 100%;
+
       .item {
         font-size: 14px;
         margin-left: 5px;
@@ -33,9 +34,11 @@ export const AppBarContainer = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
-      
+
+        :hover {
+          background: rgba(255, 255, 255, 0.15);
+        }
       }
     }
   }
-
-`
+`;

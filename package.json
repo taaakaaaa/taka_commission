@@ -10,13 +10,17 @@
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.58",
+    "axios": "^0.21.1",
     "framer-motion": "^4.1.17",
+    "mongoose": "^5.13.0",
     "next": "10.2.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-image-magnify": "^2.7.4",
     "react-inner-image-zoom": "^2.0.1",
     "react-ripple-effect": "^1.0.4",
+    "react-twitch-embed-video": "^3.0.0",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {

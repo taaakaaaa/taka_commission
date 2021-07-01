@@ -4,6 +4,7 @@ import { AppBarContainer } from "./styles";
 import LocalMallOutlinedIcon from "@material-ui/icons/LocalMallOutlined";
 import { IconButton } from "@material-ui/core";
 import Card from "./Card";
+import { motion } from "framer-motion";
 
 export default function AppBar({ onCardClick }: { onCardClick: () => void }) {
   const history = useRouter();
@@ -16,17 +17,25 @@ export default function AppBar({ onCardClick }: { onCardClick: () => void }) {
       label: "Commissions",
       url: "/commissions",
     },
+    {
+      label: "Terms",
+      url: "/contract",
+    },
   ];
 
   return (
     <AppBarContainer>
       <div className="content">
-        <h3>Taka</h3>
+        <h3 onClick={() => history.push("/")}>Taka</h3>
         <div className="items">
           {appBarItems.map((appBarItem) => (
-            <div onClick={() => history.push(appBarItem.url)} className="item">
+            <motion.div
+              whileTap={{ scale: 0.95 }}
+              onClick={() => history.push(appBarItem.url)}
+              className="item"
+            >
               {appBarItem.label}
-            </div>
+            </motion.div>
           ))}
           <Card onCardClick={onCardClick} />
         </div>
