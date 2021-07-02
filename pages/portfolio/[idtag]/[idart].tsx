@@ -1,18 +1,25 @@
 import { ITakaArt } from "..";
 import PortfolioItem from "../../../src/portfolio/item";
-import { instance } from "../../../src/shared/api";
+import { instance, instanceSelf } from "../../../src/shared/api";
 
 export async function getServerSideProps(ctx) {
   const { idtag, idart } = ctx.params;
-  var { data } = await instance.get<ITakaArt>(
-    `/api/taka/tags/subtags/art/${idtag}/${idart}`
-  );
+  var { data } = await instanceSelf.get<{
+    takaArt: ITakaArt;
+    takaArtRecomen: ITakaArt[];
+  }>(`/api/portfolio/item/${idtag}/${idart}`);
 
   return {
-    props: { data },
+    props: { data: data.takaArt, recomendacoes: data.takaArtRecomen },
   };
 }
 
-export default function PortfolioItemPage({ data }: { data: ITakaArt }) {
-  return <PortfolioItem data={data} />;
+export default function PortfolioItemPage({
+  data,
+  recomendacoes,
+}: {
+  data: ITakaArt;
+  recomendacoes: ITakaArt[];
+}) {
+  return <PortfolioItem recomendacoes={recomendacoes} data={data} />;
 }

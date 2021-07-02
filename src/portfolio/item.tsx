@@ -15,7 +15,13 @@ function getWidth(length, ratio) {
   return Math.round(width);
 }
 
-export default function PortfolioItem({ data }: { data: ITakaArt }) {
+export default function PortfolioItem({
+  data,
+  recomendacoes,
+}: {
+  data: ITakaArt;
+  recomendacoes: ITakaArt[];
+}) {
   const history = useRouter();
   const [size, setSize] = useState({
     width: 500,
@@ -114,8 +120,8 @@ export default function PortfolioItem({ data }: { data: ITakaArt }) {
       <div className="recomendacoes">
         <h2>Recomendações</h2>
         <div className="images">
-          {images.map((image) => (
-            <img key={image} src={image} />
+          {recomendacoes?.map((image) => (
+            <img key={image._id} src={image.url} />
           ))}
         </div>
       </div>
