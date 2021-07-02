@@ -1,5 +1,5 @@
-import axios from "axios";
 import CommissionsItem from "../../../src/commissions/item";
+import { instanceSelf } from "../../../src/shared/api";
 import { ITakaArt, ITakaSubTag } from "../../portfolio";
 
 export interface ICommissionItem {
@@ -9,8 +9,8 @@ export interface ICommissionItem {
 
 export async function getServerSideProps(ctx) {
   const { id } = ctx.params;
-  const { data } = await axios.get<ICommissionItem>(
-    `http://localhost:3000/api/commissions/${id}`
+  const { data } = await instanceSelf.get<ICommissionItem>(
+    `/api/commissions/${id}`
   );
 
   return {

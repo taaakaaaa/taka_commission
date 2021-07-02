@@ -1,8 +1,8 @@
-import axios from "axios";
 import Commissions from "../../src/commissions";
+import { instanceSelf } from "../../src/shared/api";
 
 export async function getServerSideProps() {
-  var { data } = await axios.get("http://localhost:3000/api/commissions");
+  var { data } = await instanceSelf.get("/api/commissions");
 
   return {
     props: { data },

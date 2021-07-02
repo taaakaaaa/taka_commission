@@ -47,6 +47,7 @@ export const HomeContainer = styled.div`
           justify-self: center;
         }
         border-radius: 30px;
+        position: relative;
       }
 
       .info {

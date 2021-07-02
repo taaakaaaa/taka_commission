@@ -35,3 +35,13 @@ body::-webkit-scrollbar-thumb:hover {
 * {
   box-sizing: border-box;
 }
+
+::selection {
+  color: black;
+  background: #fab0b18a;
+}
+
+::-moz-selection {
+  color: black;
+  background: #fab0b18a;
+}
