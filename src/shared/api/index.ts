@@ -5,5 +5,5 @@ export const instance = axios.create({
 });
 
 export const instanceSelf = axios.create({
-  baseURL: "http://localhost:3000/",
+  baseURL: process.env.NEXT_PUBLIC_API,
 });
