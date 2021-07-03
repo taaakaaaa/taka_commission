@@ -47,6 +47,7 @@ interface ITakaOrderConsumer {
   addOrder: (data: ITakaOrder) => void;
   closeOrder: (id: string) => void;
   editOrder: (id: string, newDescription: string) => void;
+  clearOrders: () => void;
 }
 const OrderContext = createContext<ITakaOrderConsumer>(null);
 export const useOrder = () => {
@@ -156,11 +157,16 @@ function useProviderOrder() {
     );
   };
 
+  const clearOrders = () => {
+    setOrders((o) => []);
+  };
+
   return {
     orders,
     addOrder,
     closeOrder,
     editOrder,
+    clearOrders,
   };
 }
 

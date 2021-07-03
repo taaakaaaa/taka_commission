@@ -72,6 +72,10 @@ export default function DialogCommissions({
             width: "100%",
           }}
         >
+          <Typography variant="h5">
+            Descreva o que você quer na sua commission
+          </Typography>
+          <br />
           <Grid container spacing={5}>
             <Grid item lg={12}>
               <TextField
@@ -81,7 +85,8 @@ export default function DialogCommissions({
                 name="description"
                 multiline
                 rows={6}
-                label="Descrição"
+                autoFocus
+                label=""
               />
             </Grid>
           </Grid>

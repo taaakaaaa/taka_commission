@@ -48,7 +48,10 @@ export default function CommissionCard({
       >
         <img
           className="miniature"
-          src={art?.[Math.floor(Math.random() * art.length)]?.url}
+          src={
+            art?.[Math.floor(Math.random() * art.length)]?.url ||
+            "https://placewaifu.com/image/200/300"
+          }
         />
 
         <div className="info">

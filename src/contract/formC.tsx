@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import {
   CircularProgress,
@@ -19,7 +19,14 @@ import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import { instanceSelf } from "../shared/api";
 import DoneIcon from "@material-ui/icons/Done";
+import { useOrder } from "../../pages/_app";
+import CartCard from "../drawer/item";
+import axios from "axios";
+import Confetti from "react-confetti";
 export default function FormC() {
+  const { clearOrders } = useOrder();
+  const { orders: cardItems, closeOrder, editOrder } = useOrder();
+
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [otherDate, setOtherData] = useState<Date | null>(new Date());
   const [name, setName] = useState("");
@@ -33,48 +40,93 @@ export default function FormC() {
     setOtherData(date);
   };
 
-  const [loading, setLoading] = useState(false);
-  const [sucess, setSucess] = useState(false);
+  const [loadingData, setLoadingData] = useState(false);
+  const [sucessData, setSucessData] = useState(false);
+
+  const [loadingEmail, setLoadingEmail] = useState(false);
+  const [sucessEmail, setSucessEmail] = useState(false);
+
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    if (show) {
+      setTimeout(() => {
+        setShow(false);
+      }, 4000);
+    }
+  }, [show]);
+
+  useEffect(() => {
+    if (sucessData && sucessEmail) {
+      clearOrders();
+      setShow(true);
+    }
+  }, [sucessData, sucessEmail]);
 
   const send = () => {
-    setLoading(true);
-    instanceSelf
-      .post(`/api/user`, {
-        name: name,
-        birth: otherDate,
-        forWho: tipo,
-        otherName: nameOther,
-        otherBirth: otherDate,
+    setLoadingData(true);
+    saveContract();
+  };
+
+  const sendEmail = (id) => {
+    setLoadingEmail(true);
+    axios
+      .post("https://api.emailjs.com/api/v1.0/email/send", {
+        service_id: "service_qsgqtnf",
+        template_id: "template_cahmrvr",
+        user_id: "user_auNcVu0d5vqKOAjBnKuVi",
+        template_params: {
+          name: name,
+          birth: selectedDate.toISOString(),
+          forWho: tipo,
+          otherName: nameOther,
+          otherBirth: otherDate.toISOString(),
+          id,
+          pedido:
+            cardItems && cardItems.length > 0
+              ? cardItems.map(
+                  (cardItem) =>
+                    `
+            <h3>${cardItem.data.titulo}</h3>
+            <p>${cardItem.description}</p>
+            `
+                )
+              : "",
+        },
       })
       .then((res) => {
-        setSucess(true);
+        setSucessEmail(true);
       })
       .catch((err) => {
-        setSucess(false);
+        setSucessEmail(false);
       })
       .finally(() => {
-        setLoading(false);
+        setLoadingEmail(false);
       });
   };
 
-  if (sucess)
-    return (
-      <div
-        style={{
-          height: "90vh",
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-        }}
-      >
-        <h1>Enviado com sucesso</h1>
-        <DoneIcon fontSize="large" color="primary" />
-      </div>
-    );
+  const saveContract = () => {
+    instanceSelf
+      .post(`/api/user`, {
+        name: name,
+        birth: selectedDate.toISOString(),
+        forWho: tipo,
+        otherName: nameOther,
+        otherBirth: otherDate.toISOString(),
+      })
+      .then((res) => {
+        sendEmail(res.data.id ?? "0");
+        setSucessData(true);
+      })
+      .catch((err) => {
+        setSucessData(false);
+      })
+      .finally(() => {
+        setLoadingData(false);
+      });
+  };
 
-  if (loading)
+  if (loadingData || loadingEmail || sucessEmail || sucessEmail)
     return (
       <div
         style={{
@@ -86,8 +138,33 @@ export default function FormC() {
           flexDirection: "column",
         }}
       >
-        <h1>Enviando...</h1>
-        <CircularProgress />
+        {show && <Confetti colors={["#A3B5FF", "#DD5175"]} />}
+        {loadingData ? (
+          <div style={{ display: "flex", alignItems: "center", gap: 30 }}>
+            <CircularProgress size={32} />
+            <h1>Enviando Contrato...</h1>
+          </div>
+        ) : sucessData ? (
+          <div style={{ display: "flex", alignItems: "center", gap: 30 }}>
+            <DoneIcon fontSize="large" color="primary" />
+            <h1>Contrato enviado com sucesso!</h1>
+          </div>
+        ) : (
+          <div></div>
+        )}
+        {loadingEmail ? (
+          <div style={{ display: "flex", alignItems: "center", gap: 30 }}>
+            <CircularProgress size={32} />
+            <h1>Enviando Email...</h1>
+          </div>
+        ) : sucessEmail ? (
+          <div style={{ display: "flex", alignItems: "center", gap: 30 }}>
+            <DoneIcon fontSize="large" color="primary" />
+            <h1>Email enviado com sucesso!</h1>
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     );
 
@@ -98,6 +175,19 @@ export default function FormC() {
         send();
       }}
     >
+      {cardItems.length > 0 && (
+        <>
+          <h2>Pedidos ({cardItems.length})</h2>
+          {cardItems.map((cardItem) => (
+            <CartCard
+              onDescEdit={editOrder}
+              onClose={closeOrder}
+              order={cardItem}
+              key={cardItem.data._id}
+            />
+          ))}
+        </>
+      )}
       <h1>Termos Formulário</h1>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container spacing={5}>
@@ -135,8 +225,6 @@ export default function FormC() {
               </FormLabel>
               <br />
               <RadioGroup
-                aria-label="gender"
-                name="gender1"
                 value={tipo}
                 onChange={(e) =>
                   setTipo(e.target.value as "Eu" | "Parente" | "Outro")
@@ -195,7 +283,10 @@ export default function FormC() {
         </Grid>
       </MuiPickersUtilsProvider>
       <br />
-      <Alert severity="info">This is an info alert — check it out!</Alert>
+      <Alert severity="info">
+        Se você mentir sobre qualquer informação, você está sujeito a sujeito a
+        ações jurídicas
+      </Alert>
       <Button
         style={{ position: "relative", margin: "30px 0px" }}
         onClick={() => {}}
@@ -207,7 +298,7 @@ export default function FormC() {
           scale: 0.95,
         }}
       >
-        Send
+        Enviar
       </Button>
     </form>
   );

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { ITakaArt, ITakaTag } from "../../pages/portfolio";
 import { instanceSelf } from "../shared/api";
 import Title from "../shared/title";
+import { Empty } from "../shared/Empty";
 import { PortContainer } from "./styles";
 
 export interface IPortItem {
@@ -25,14 +26,17 @@ export default function Portfolio({ tags }: { tags: ITakaTag[] }) {
   };
 
   useEffect(() => {
-    const id = tags[active]._id;
+    const id = tags[active]?._id;
     setImages(null);
-    instanceSelf.get<IPortItem[]>(`/api/portfolio/${id}`).then(({ data }) => {
-      setImages(data);
-    });
+    if (id)
+      instanceSelf.get<IPortItem[]>(`/api/portfolio/${id}`).then(({ data }) => {
+        setImages(data);
+      });
   }, [active]);
 
   const changeActive = (index: number) => setActive(index);
+
+  if (tags.length <= 0) return <Empty />;
 
   return (
     <PortContainer>

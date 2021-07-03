@@ -27,8 +27,8 @@ async function user(req: NextApiRequest, res: NextApiResponse) {
           contract: contract.id,
         });
 
-        const userCreated = await newUser.save();
-        return res.status(200).send(userCreated);
+        const { _id } = await newUser.save();
+        return res.status(200).send({ id: _id });
       }
     );
   }

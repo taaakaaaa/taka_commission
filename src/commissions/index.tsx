@@ -1,5 +1,6 @@
 import { motion, Variants } from "framer-motion";
 import React from "react";
+import { Empty } from "../shared/Empty";
 import Title from "../shared/title";
 import CommissionCard, { CommissionCardProps } from "./card";
 import { CommissionsContainer } from "./styles";
@@ -87,23 +88,27 @@ export default function Commission({ data }) {
         <Title text={"Commissions"} />
       </div>
 
-      {data.map(({ tag, subTags, art }) => (
-        <motion.div
-          key={tag.id}
-          initial="hidden"
-          animate="visible"
-          variants={containerVar}
-        >
-          <motion.h2>{tag.titulo}</motion.h2>
+      {!data || data?.length <= 0 ? (
+        <Empty />
+      ) : (
+        data.map(({ tag, subTags, art }) => (
+          <motion.div
+            key={tag.id}
+            initial="hidden"
+            animate="visible"
+            variants={containerVar}
+          >
+            <motion.h2>{tag.titulo}</motion.h2>
 
-          {subTags?.map((commissionItemData, index) => (
-            <CommissionCard
-              key={commissionItemData.title}
-              {...commissionItemData}
-            />
-          ))}
-        </motion.div>
-      ))}
+            {subTags?.map((commissionItemData, index) => (
+              <CommissionCard
+                key={commissionItemData.title}
+                {...commissionItemData}
+              />
+            ))}
+          </motion.div>
+        ))
+      )}
     </CommissionsContainer>
   );
 }
