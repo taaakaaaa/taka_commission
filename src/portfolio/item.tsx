@@ -114,7 +114,11 @@ export default function PortfolioItem({
           }}
         />
       </motion.div>
-      <ButtonOutlined>Order</ButtonOutlined>
+      <ButtonOutlined
+        onClick={() => history.push(`/commissions/${history.query.idtag}`)}
+      >
+        Order
+      </ButtonOutlined>
       <br />
       <div className="recomendacoes">
         <h2>Recomendações</h2>
