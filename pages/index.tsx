@@ -4,6 +4,7 @@ import { HomeContainer } from "../src/home";
 
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 //@ts-ignore
 const ReactTwitchEmbedVideo = dynamic(import("react-twitch-embed-video"), {
@@ -11,6 +12,7 @@ const ReactTwitchEmbedVideo = dynamic(import("react-twitch-embed-video"), {
 });
 
 export default function HomePage() {
+  const history = useRouter();
   return (
     <HomeContainer>
       <header>
@@ -27,7 +29,7 @@ export default function HomePage() {
             </p>
 
             <Button
-              onClick={() => {}}
+              onClick={() => history.push("/commissions")}
               whileHover={{
                 y: -5,
                 filter: "hue-rotate(-30deg)",

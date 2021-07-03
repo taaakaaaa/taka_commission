@@ -12,7 +12,7 @@ async function user(req: NextApiRequest, res: NextApiResponse) {
         if (err) return res.status(500).send({});
         const data = req.body;
 
-        let ip = req.headers["x-real-ip"] || req.connection.remoteAddress;
+        let ip = req.headers["x-real-ip"] || req.socket.remoteAddress;
         ip = ip.toString();
 
         if (ip.substr(0, 7) == "::ffff:") {

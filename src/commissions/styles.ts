@@ -283,7 +283,7 @@ export const CommissionsCardContainer = styled(motion.div)`
   }
 `;
 
-export const Button = styled(motion.div)`
+export const Button = styled(motion.button)`
   cursor: pointer;
   width: 100%;
   @media only screen and (max-width: 1024px) {
@@ -308,6 +308,15 @@ export const Button = styled(motion.div)`
   text-align: center;
   position: sticky;
   bottom: 0px;
+
+  .outline {
+    background: transparent;
+    border: 1px solid white;
+
+    :hover {
+      background: #323232;
+    }
+  }
 `;
 export const CommissionsDialogContainer = styled(motion.div)`
   position: fixed;

@@ -1,43 +1,57 @@
-import { TextField } from "@material-ui/core";
+import { IconButton, TextField, Zoom } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
 import React, { useState } from "react";
+import { ITakaOrder } from "../../pages/_app";
 import { CartCardContainer } from "./styles";
 
-export default function CartCard() {
-  const [showTextField, setShowTextField] = useState(false);
+export default function CartCard({
+  order,
+  onClose,
+  onDescEdit,
+}: {
+  order: ITakaOrder;
+  onClose: (id: string) => void;
+  onDescEdit: (id: string, newDescription: string) => void;
+}) {
   const [showDescField, setShowDescField] = useState(false);
+  const [showClose, setShowClose] = useState(false);
+  const [description, setDescription] = useState<string>(order.description);
+
   return (
-    <CartCardContainer>
-      {showTextField ? (
-        <TextField
-          onBlur={() => setShowTextField(false)}
-          value="vTuber"
-          fullWidth
-          autoFocus
-          variant="standard"
-          inputProps={{ className: "h4" }}
-        />
-      ) : (
-        <h4 onClick={() => setShowTextField(true)}>vTuber</h4>
-      )}
+    <CartCardContainer
+      onMouseLeave={() => setShowClose(false)}
+      onMouseEnter={() => setShowClose(true)}
+    >
+      <div className="title">
+        <h4>{order.data.titulo}</h4>
+        <Zoom key={showClose.toString()} in={showClose} unmountOnExit>
+          <IconButton
+            onClick={() => onClose(order.id)}
+            size="small"
+            className="icon"
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </Zoom>
+      </div>
+
       {showDescField ? (
         <TextField
-          onBlur={() => setShowDescField(false)}
+          onBlur={() => {
+            setShowDescField(false);
+            onDescEdit(order.id, description);
+          }}
           style={{ fontSize: 14 }}
-          value=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus a possimus enim officiis praesentium veniam error. Quos numquam, culpa  nostrum fugit, mollitia possimus doloremque debitis molestias dignissimos, cum voluptate odio!"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           multiline={true}
           rows={6}
-          variant="filled"
           inputProps={{ className: "p" }}
           fullWidth
           autoFocus
         />
       ) : (
-        <p onClick={() => setShowDescField(true)}>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Temporibus a
-          possimus enim officiis praesentium veniam error. Quos numquam, culpa
-          nostrum fugit, mollitia possimus doloremque debitis molestias
-          dignissimos, cum voluptate odio!
-        </p>
+        <p onClick={() => setShowDescField(true)}>{description}</p>
       )}
     </CartCardContainer>
   );

@@ -28,6 +28,7 @@ export default function CommissionsItem({
         handleClickOpen={handleClickOpen}
         handleClose={handleClose}
         open={open}
+        data={subTag}
       />
       <CommissionsItemContainer>
         <div className="title">

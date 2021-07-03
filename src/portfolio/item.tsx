@@ -32,6 +32,10 @@ export default function PortfolioItem({
     height: 500,
   });
 
+  const redirect = (idart: string) => {
+    history.push(`/portfolio/${history.query.idtag}/${idart}`);
+  };
+
   useEffect(() => {
     const img = new Image();
     img.src = data.url;
@@ -72,12 +76,7 @@ export default function PortfolioItem({
       }
     };
   }, []);
-  const images = [
-    "https://pbs.twimg.com/media/E4KZPPzUYAU0n_f?format=jpg&name=medium",
-    "https://pbs.twimg.com/media/DJJ3blsVAAAix11?format=jpg&name=small",
-    "https://pbs.twimg.com/media/E1b9NJmVUAE_4PK?format=jpg&name=large",
-    "https://pbs.twimg.com/media/E2n-e-cVEAQ9YdM?format=jpg&name=4096x4096",
-  ];
+
   return (
     <PortItemContainer>
       <div className="title">
@@ -121,7 +120,11 @@ export default function PortfolioItem({
         <h2>Recomendações</h2>
         <div className="images">
           {recomendacoes?.map((image) => (
-            <img key={image._id} src={image.url} />
+            <img
+              onClick={() => redirect(image._id)}
+              key={image._id}
+              src={image.url}
+            />
           ))}
         </div>
       </div>

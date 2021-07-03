@@ -14,6 +14,20 @@ export const DrawerContainer = styled.div<DrawerCardProps>`
   align-items: center;
   justify-content: flex-end;
 
+  .no-items {
+    background: #1f1f1f;
+    border-radius: 30px;
+    padding: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    color: #f9e2fc;
+  }
+
   .content {
     overflow-y: auto;
     position: relative;
@@ -100,8 +114,13 @@ export const CartCardContainer = styled.div`
   flex-direction: column;
   gap: 15px;
 
-  h4,
-  .h4 {
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  h4 {
     padding: 0px;
     margin: 0px;
 
@@ -115,10 +134,6 @@ export const CartCardContainer = styled.div`
     letter-spacing: 0.1em;
 
     color: #f9e2fc;
-  }
-
-  h4 {
-    cursor: pointer;
   }
 
   p,

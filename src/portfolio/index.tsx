@@ -75,7 +75,8 @@ export default function Portfolio({ tags }: { tags: ITakaTag[] }) {
                   <h2>{item.tag.titulo}</h2>
                   <div className="tabContent">
                     {item.art.map((artItem) => (
-                      <img
+                      <motion.img
+                        whileTap={{ scale: 0.95 }}
                         onClick={() => redirect(item.tag._id, artItem._id)}
                         key={artItem._id}
                         className="item"

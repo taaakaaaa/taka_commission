@@ -1,10 +1,8 @@
+import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import React from "react";
-import { AppBarContainer } from "./styles";
-import LocalMallOutlinedIcon from "@material-ui/icons/LocalMallOutlined";
-import { IconButton } from "@material-ui/core";
 import Card from "./Card";
-import { motion } from "framer-motion";
+import { AppBarContainer } from "./styles";
 
 export default function AppBar({ onCardClick }: { onCardClick: () => void }) {
   const history = useRouter();
