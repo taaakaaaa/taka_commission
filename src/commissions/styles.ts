@@ -13,12 +13,19 @@ export const CommissionsContainer = styled.div`
     font-style: normal;
     font-weight: bold;
     font-size: 26px;
+
+    @media only screen and (max-width: 1024px) {
+      padding-left: 30px;
+    }
   }
 
   .title {
     display: flex;
     width: 100%;
     justify-content: flex-end;
+    @media only screen and (max-width: 1024px) {
+      justify-content: flex-start;
+    }
     h1 {
       letter-spacing: 6px;
       padding: 0px;
@@ -214,6 +221,11 @@ export const CommissionsCardContainer = styled(motion.div)`
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 
+  @media only screen and (max-width: 1024px) {
+    flex-direction: column;
+    height: 100%;
+  }
+
   border: 1px solid white;
   border-radius: 30px;
   height: 280px;
@@ -232,6 +244,10 @@ export const CommissionsCardContainer = styled(motion.div)`
   }
 
   .miniature {
+    @media only screen and (max-width: 1024px) {
+      width: 100%;
+      max-height: 250px;
+    }
     width: 280px;
     height: 100%;
 
@@ -242,6 +258,10 @@ export const CommissionsCardContainer = styled(motion.div)`
   .info {
     flex: 3;
     flex-grow: 3;
+
+    @media only screen and (max-width: 1024px) {
+      padding: 0px 30px;
+    }
     h3 {
       color: #f9e2fc;
       font-size: 52px;
@@ -270,7 +290,11 @@ export const CommissionsCardContainer = styled(motion.div)`
     font-weight: bold;
     letter-spacing: 0.1em;
     padding-right: 30px;
+
     h4 {
+      @media only screen and (max-width: 1024px) {
+        margin-top: 15px;
+      }
       ::after {
         content: ",00";
         align-self: flex-end;

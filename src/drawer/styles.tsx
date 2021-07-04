@@ -106,56 +106,58 @@ export const DrawerContainer = styled.div<DrawerCardProps>`
 `;
 
 export const CartCardContainer = styled.div`
-  background: #1f1f1f;
-  border-radius: 30px;
-  padding: 30px;
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-
-  .title {
+  .card-item {
+    background: #1f1f1f;
+    border-radius: 30px;
+    padding: 30px;
+    margin-bottom: 30px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
+    flex-direction: column;
+    gap: 15px;
 
-  h4 {
-    padding: 0px;
-    margin: 0px;
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-    font-family: Rubik;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 22px;
-    line-height: 38px;
-    /* identical to box height */
+    h4 {
+      padding: 0px;
+      margin: 0px;
 
-    letter-spacing: 0.1em;
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 38px;
+      /* identical to box height */
 
-    color: #f9e2fc;
-  }
+      letter-spacing: 0.1em;
 
-  p,
-  .p {
-    font-size: 18px;
-    line-height: 28px;
-    font-weight: lighter;
-    padding: 0px;
-    margin: 0px;
-  }
+      color: #f9e2fc;
+    }
 
-  p {
-    cursor: pointer;
-  }
+    p,
+    .p {
+      font-size: 18px;
+      line-height: 28px;
+      font-weight: lighter;
+      padding: 0px;
+      margin: 0px;
+    }
 
-  .MuiFilledInput-multiline {
-    padding: 15px 25px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-  }
+    p {
+      cursor: pointer;
+    }
 
-  .MuiInputBase-input {
-    padding: 15px 0px;
+    .MuiFilledInput-multiline {
+      padding: 15px 25px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .MuiInputBase-input {
+      padding: 15px 0px;
+    }
   }
 `;

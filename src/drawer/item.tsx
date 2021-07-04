@@ -19,6 +19,7 @@ export default function CartCard({
 
   return (
     <CartCardContainer
+      className="card-item"
       onMouseLeave={() => setShowClose(false)}
       onMouseEnter={() => setShowClose(true)}
     >

@@ -4,6 +4,9 @@ import styled from "styled-components";
 
 const TitleContainer = styled(motion.h1)`
   letter-spacing: 6px;
+  @media only screen and (max-width: 1024px) {
+    letter-spacing: 3px;
+  }
   padding: 0px;
   margin: 0px;
   font-size: clamp(42px, 7vw, 72px);

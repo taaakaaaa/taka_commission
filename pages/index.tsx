@@ -10,6 +10,11 @@ import { useRouter } from "next/router";
 const ReactTwitchEmbedVideo = dynamic(import("react-twitch-embed-video"), {
   ssr: false,
 });
+export async function getServerSideProps() {
+  return {
+    props: {},
+  };
+}
 
 export default function HomePage() {
   const history = useRouter();
