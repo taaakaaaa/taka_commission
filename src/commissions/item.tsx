@@ -45,21 +45,32 @@ export default function CommissionsItem({
           ))}
         </motion.div>
         <p>{subTag.descricao}</p>
-        <h2>Interested?</h2>
+        <h2>{subTag.open ? "Interested?" : "Commission fechada"}</h2>
         <div className="buttons">
           <motion.button
+            disabled={!subTag.open}
             onClick={handleClickOpen}
-            whileHover={{
-              y: -5,
-              filter: "hue-rotate(-30deg)",
-            }}
-            whileTap={{
-              scale: 0.95,
-            }}
+            whileHover={
+              subTag.open
+                ? {
+                    y: -5,
+                    filter: "hue-rotate(-30deg)",
+                  }
+                : {}
+            }
+            whileTap={
+              subTag.open
+                ? {
+                    scale: 0.95,
+                  }
+                : {
+                    rotate: ["0deg", "2deg", "-2deg", "0deg"],
+                  }
+            }
           >
-            Ask only for a vTuber
+            Add to the card
           </motion.button>
-          <motion.button
+          {/* <motion.button
             onClick={handleClickOpen}
             whileHover={{
               y: -5,
@@ -70,7 +81,7 @@ export default function CommissionsItem({
             className="outline"
           >
             Add to the card
-          </motion.button>
+          </motion.button> */}
         </div>
       </CommissionsItemContainer>
     </>

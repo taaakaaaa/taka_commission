@@ -172,6 +172,12 @@ export const CommissionsItemContainer = styled.div`
         padding: 15px 30px;
       }
 
+      :disabled {
+        background: transparent;
+        border: 1px solid white;
+        cursor: not-allowed;
+      }
+
       background: linear-gradient(226.4deg, #6650f3 0%, #f55077 100%);
       border-radius: 30px;
       outline: none;

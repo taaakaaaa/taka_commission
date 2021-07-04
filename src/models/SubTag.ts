@@ -12,6 +12,7 @@ export interface ITakaSubTag extends Document {
   titulo: string;
   descricao: string;
   preco: string;
+  open: boolean;
 }
 
 export const takaSubTagSchema: Schema = new Schema({
@@ -28,5 +29,9 @@ export const takaSubTagSchema: Schema = new Schema({
   },
   descricao: {
     type: String,
+  },
+  open: {
+    type: Boolean,
+    default: true,
   },
 });

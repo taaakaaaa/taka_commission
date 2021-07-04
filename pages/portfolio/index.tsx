@@ -19,6 +19,7 @@ export interface ITakaTag {
 export interface ITakaSubTag {
   titulo: string;
   descricao: string;
+  open: boolean;
 }
 
 /**
