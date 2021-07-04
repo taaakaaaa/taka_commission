@@ -47,7 +47,7 @@ export default function ContractPage() {
               scale: 0.95,
             }}
           >
-            Accept
+            li e aceito os termos
           </Button>
         </>
       )}

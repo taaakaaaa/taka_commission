@@ -51,7 +51,7 @@ export default function HomePage() {
 
       <div className="contact">
         <motion.h2 drag="x" dragConstraints={{ left: 0, right: 50 }}>
-          Contact
+          Contato
         </motion.h2>
         <div className="items">
           {[

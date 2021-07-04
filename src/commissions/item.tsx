@@ -68,7 +68,7 @@ export default function CommissionsItem({
                   }
             }
           >
-            Add to the card
+            Adicionar ao carrinho
           </motion.button>
           {/* <motion.button
             onClick={handleClickOpen}

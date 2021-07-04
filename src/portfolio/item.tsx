@@ -117,7 +117,7 @@ export default function PortfolioItem({
       <ButtonOutlined
         onClick={() => history.push(`/commissions/${history.query.idtag}`)}
       >
-        Order
+        Ver encomenda
       </ButtonOutlined>
       <br />
       <div className="recomendacoes">

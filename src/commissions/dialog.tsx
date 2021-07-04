@@ -52,7 +52,7 @@ export default function DialogCommissions({
           >
             <CloseIcon />
           </IconButton>
-          <Typography variant="h6">Add to the card</Typography>
+          <Typography variant="h6">Adicionar ao carrinho</Typography>
         </Toolbar>
       </AppBar>
       <div
@@ -115,7 +115,7 @@ export default function DialogCommissions({
               scale: 0.95,
             }}
           >
-            Add to the card
+            Adicionar ao carrinho
           </Button>
         </div>
       </div>

@@ -108,7 +108,7 @@ export default function DrawerCard({ open, onCardClose }: DrawerCardProps) {
                   scale: 0.95,
                 }}
               >
-                FINISH
+                Finalizar
               </Button>
             </>
           )}

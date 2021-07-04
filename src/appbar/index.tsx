@@ -16,7 +16,7 @@ export default function AppBar({ onCardClick }: { onCardClick: () => void }) {
       url: "/commissions",
     },
     {
-      label: "Terms",
+      label: "Termos",
       url: "/contract",
     },
   ];
