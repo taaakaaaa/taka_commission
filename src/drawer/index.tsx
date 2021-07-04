@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { IconButton } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import { motion } from "framer-motion";
@@ -5,8 +6,9 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { useOrder } from "../../pages/_app";
 import { Button } from "../commissions/styles";
-import CartCard from "./item";
 import { DrawerContainer } from "./styles";
+
+const CartCard = dynamic(() => import("./item"), { ssr: false });
 
 export interface DrawerCardProps {
   open: boolean;
