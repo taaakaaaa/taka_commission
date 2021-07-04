@@ -23,6 +23,7 @@ import { useOrder } from "../../pages/_app";
 import CartCard from "../drawer/item";
 import axios from "axios";
 import Confetti from "react-confetti";
+import { FormContractContainer } from "./styles";
 export default function FormC() {
   const { clearOrders } = useOrder();
   const { orders: cardItems, closeOrder, editOrder } = useOrder();
@@ -176,7 +177,7 @@ export default function FormC() {
       }}
     >
       {cardItems.length > 0 && (
-        <>
+        <FormContractContainer>
           <h2>Pedidos ({cardItems.length})</h2>
           {cardItems.map((cardItem) => (
             <CartCard
@@ -186,7 +187,7 @@ export default function FormC() {
               key={cardItem.data._id}
             />
           ))}
-        </>
+        </FormContractContainer>
       )}
       <h1>Termos Formulário</h1>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
