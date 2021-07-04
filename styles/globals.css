@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Rubik", sans-serif;
+  background: #1f1f1f;
+  background-image: url(/background.png);
+  color: white;
+}
+
+/* width */
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+body::-webkit-scrollbar-track {
+  background: #323232;
+  border-radius: 10px;
+}
+
+/* Handle */
+body::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+body::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  color: black;
+  background: #fab0b18a;
+}
+
+::-moz-selection {
+  color: black;
+  background: #fab0b18a;
+}
