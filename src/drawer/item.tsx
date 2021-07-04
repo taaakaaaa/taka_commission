@@ -2,7 +2,6 @@ import { IconButton, TextField, Zoom } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import React, { useState } from "react";
 import { ITakaOrder } from "../../pages/_app";
-import { CartCardContainer } from "./styles";
 
 export default function CartCard({
   order,
@@ -18,43 +17,42 @@ export default function CartCard({
   const [description, setDescription] = useState<string>(order.description);
 
   return (
-    <CartCardContainer
+    <div
+      className="card-item"
       onMouseLeave={() => setShowClose(false)}
       onMouseEnter={() => setShowClose(true)}
     >
-      <div className="card-item">
-        <div className="title">
-          <h4>{order.data.titulo}</h4>
-          <Zoom key={showClose.toString()} in={showClose} unmountOnExit>
-            <IconButton
-              onClick={() => onClose(order.id)}
-              size="small"
-              className="icon"
-            >
-              <CloseIcon fontSize="small" />
-            </IconButton>
-          </Zoom>
-        </div>
-
-        {showDescField ? (
-          <TextField
-            onBlur={() => {
-              setShowDescField(false);
-              onDescEdit(order.id, description);
-            }}
-            style={{ fontSize: 14 }}
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            multiline={true}
-            rows={6}
-            inputProps={{ className: "p" }}
-            fullWidth
-            autoFocus
-          />
-        ) : (
-          <p onClick={() => setShowDescField(true)}>{description}</p>
-        )}
+      <div className="title">
+        <h4>{order.data.titulo}</h4>
+        <Zoom key={showClose.toString()} in={showClose} unmountOnExit>
+          <IconButton
+            onClick={() => onClose(order.id)}
+            size="small"
+            className="icon"
+          >
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </Zoom>
       </div>
-    </CartCardContainer>
+
+      {showDescField ? (
+        <TextField
+          onBlur={() => {
+            setShowDescField(false);
+            onDescEdit(order.id, description);
+          }}
+          style={{ fontSize: 14 }}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          multiline={true}
+          rows={6}
+          inputProps={{ className: "p" }}
+          fullWidth
+          autoFocus
+        />
+      ) : (
+        <p onClick={() => setShowDescField(true)}>{description}</p>
+      )}
+    </div>
   );
 }

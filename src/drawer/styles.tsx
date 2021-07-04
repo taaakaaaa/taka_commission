@@ -14,6 +14,61 @@ export const DrawerContainer = styled.div<DrawerCardProps>`
   align-items: center;
   justify-content: flex-end;
 
+  .card-item {
+    background: #1f1f1f;
+    border-radius: 30px;
+    padding: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    h4 {
+      padding: 0px;
+      margin: 0px;
+
+      font-family: Rubik;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 38px;
+      /* identical to box height */
+
+      letter-spacing: 0.1em;
+
+      color: #f9e2fc;
+    }
+
+    p,
+    .p {
+      font-size: 18px;
+      line-height: 28px;
+      font-weight: lighter;
+      padding: 0px;
+      margin: 0px;
+    }
+
+    p {
+      cursor: pointer;
+    }
+
+    .MuiFilledInput-multiline {
+      padding: 15px 25px;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .MuiInputBase-input {
+      padding: 15px 0px;
+    }
+  }
+
   .no-items {
     background: #1f1f1f;
     border-radius: 30px;
@@ -101,63 +156,6 @@ export const DrawerContainer = styled.div<DrawerCardProps>`
 
       width: 100%;
       height: 1px;
-    }
-  }
-`;
-
-export const CartCardContainer = styled.div`
-  .card-item {
-    background: #1f1f1f;
-    border-radius: 30px;
-    padding: 30px;
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-
-    .title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    h4 {
-      padding: 0px;
-      margin: 0px;
-
-      font-family: Rubik;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 22px;
-      line-height: 38px;
-      /* identical to box height */
-
-      letter-spacing: 0.1em;
-
-      color: #f9e2fc;
-    }
-
-    p,
-    .p {
-      font-size: 18px;
-      line-height: 28px;
-      font-weight: lighter;
-      padding: 0px;
-      margin: 0px;
-    }
-
-    p {
-      cursor: pointer;
-    }
-
-    .MuiFilledInput-multiline {
-      padding: 15px 25px;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
-    }
-
-    .MuiInputBase-input {
-      padding: 15px 0px;
     }
   }
 `;
