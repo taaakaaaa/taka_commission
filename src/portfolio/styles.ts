@@ -111,7 +111,6 @@ export const PortContainer = styled.div`
 
         border-radius: 30px;
         :hover {
-          padding: 10px 0px;
           object-fit: contain;
           background: #323232;
         }
@@ -210,6 +209,7 @@ export const PortItemContainer = styled.div`
 
         border-radius: 30px;
         :hover {
+          padding: 15px 0px;
           object-fit: contain;
           background: #1f1f1f;
         }
