@@ -69,6 +69,7 @@ export const useAlert = () => {
 
 function MyApp({ Component, pageProps }) {
   const [open, setOpen] = useState(false);
+  const [openNav, setOpenNav] = useState(false);
 
   const order = useProviderOrder();
   const alert = useAlertProvider();
@@ -104,7 +105,12 @@ function MyApp({ Component, pageProps }) {
         <AlertContext.Provider value={alert}>
           <OrderContext.Provider value={order}>
             <AlertTaka />
-            <AppBar onCardClick={() => setOpen(true)} />
+            <AppBar
+              open={openNav}
+              onNavClose={() => setOpenNav(false)}
+              onNavOpen={() => setOpenNav(true)}
+              onCardClick={() => setOpen(true)}
+            />
             <Component {...pageProps} />
             <DrawerCard onCardClose={() => setOpen(false)} open={open} />
           </OrderContext.Provider>

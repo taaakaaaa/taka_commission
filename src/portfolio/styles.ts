@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const PortContainer = styled.div`
   max-width: 1366px;
+  padding: 0px 30px;
   margin: 100px auto;
 
   .title {
@@ -121,6 +122,7 @@ export const PortContainer = styled.div`
 
 export const PortItemContainer = styled.div`
   max-width: 1366px;
+  padding: 0px 30px;
   margin: 100px auto;
 
   .title {
@@ -225,7 +227,7 @@ export const ButtonOutlined = styled.button`
   outline: none;
   border: 2px solid black;
   padding: 20px 30px;
-  font-size: 32px;
+  font-size: clamp(18px, 2vw, 32px);
   border-image: linear-gradient(226.4deg, #6650f3 0%, #f55077 100%);
   border-image-slice: 1;
 
