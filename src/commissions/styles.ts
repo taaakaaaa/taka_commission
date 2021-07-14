@@ -156,6 +156,7 @@ export const CommissionsItemContainer = styled.div`
         background-size: cover;
         object-fit: cover;
         border-radius: 30px;
+        object-position: top;
       }
 
       .info-zoom {
