@@ -106,6 +106,7 @@ export const PortContainer = styled.div`
         height: 300px;
         width: 100%;
         object-fit: cover;
+        object-position: top;
         position: relative;
         cursor: pointer;
 
@@ -165,8 +166,6 @@ export const PortItemContainer = styled.div`
     /* max-height: 95vh; */
     .info {
       max-width: 100%;
-      max-height: 100%;
-      max-height: calc(95vh - 100px);
       object-fit: cover;
     }
   }
@@ -204,6 +203,7 @@ export const PortItemContainer = styled.div`
         height: 250px;
         width: 250px;
         object-fit: cover;
+        object-position: top;
         position: relative;
         cursor: pointer;
 
