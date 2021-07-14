@@ -45,7 +45,7 @@ export default function CommissionsItem({
           ))}
         </motion.div>
         <p>{subTag.descricao}</p>
-        <h2>{subTag.open ? "Interested?" : "Commission fechada"}</h2>
+        <h2>{subTag.open ? "Interessado?" : "Commission fechada"}</h2>
         <div className="buttons">
           <motion.button
             disabled={!subTag.open}
