@@ -9,6 +9,10 @@ export const AppBarContainer = styled.div`
 
   background: #1f1f1f;
 
+  .select {
+    width: 100px;
+  }
+
   .content {
     display: flex;
     align-items: center;

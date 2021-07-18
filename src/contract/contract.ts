@@ -2,6 +2,7 @@ import mongoose, { Schema, model } from "mongoose";
 
 export const contractSchema = new Schema({
   term: String,
+  termEn: String,
   dateCreated: Date,
 });
 

@@ -24,6 +24,7 @@ import CartCard from "../drawer/item";
 import axios from "axios";
 import Confetti from "react-confetti";
 import { FormContractContainer } from "./styles";
+
 export default function FormC() {
   const { clearOrders } = useOrder();
   const { orders: cardItems, closeOrder, editOrder } = useOrder();

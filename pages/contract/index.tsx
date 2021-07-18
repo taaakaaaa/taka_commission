@@ -2,20 +2,32 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button } from "../../src/commissions/styles";
 import dynamic from "next/dynamic";
+import { instanceSelf } from "../../src/shared/api";
+import useTranslation from "next-translate/useTranslation";
 
 export const FormC = dynamic(() => import("../../src/contract/formC"), {
   ssr: false,
 });
 
-export default function ContractPage() {
-  const [data, setData] = useState(null);
-  const [accept, setAccept] = useState(false);
+export async function getStaticProps() {
+  var { data: terms } = await instanceSelf.get("/api/contract");
 
-  useEffect(() => {
-    axios.get("/api/contract").then((res) => {
-      setData(res.data);
-    });
-  }, []);
+  console.log(`data`, terms);
+
+  return {
+    props: { terms },
+  };
+}
+
+export default function ContractPage({ terms }) {
+  const [accept, setAccept] = useState(false);
+  const { lang } = useTranslation();
+
+  // useEffect(() => {
+  //   axios.get("/api/contract").then((res) => {
+  //     setData(res.data);
+  //   });
+  // }, []);
 
   return (
     <div
@@ -31,8 +43,12 @@ export default function ContractPage() {
       ) : (
         <>
           <h1>Termos</h1>
-          {data?.term ? (
-            <div dangerouslySetInnerHTML={{ __html: data.term }} />
+          {terms?.term ? (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: lang === "en" ? terms.termEn : terms.term,
+              }}
+            />
           ) : (
             <div>Loading...</div>
           )}

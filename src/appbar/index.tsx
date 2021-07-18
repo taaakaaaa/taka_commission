@@ -1,4 +1,4 @@
-import { useMediaQuery } from "@material-ui/core";
+import { MenuItem, Select, useMediaQuery } from "@material-ui/core";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect } from "react";
@@ -7,6 +7,9 @@ import { AppBarContainer, SidenavContainer } from "./styles";
 import { IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
+import useTranslation from "next-translate/useTranslation";
+import setLanguage from "next-translate/setLanguage";
+
 export default function AppBar({
   onCardClick,
   open,
@@ -18,6 +21,7 @@ export default function AppBar({
   onNavClose: () => void;
   onNavOpen: () => void;
 }) {
+  const { lang } = useTranslation();
   const history = useRouter();
   const isMobile = useMediaQuery("(max-width: 780px)");
   const appBarItems = [
@@ -65,6 +69,17 @@ export default function AppBar({
         <div className="content">
           <h3 onClick={() => history.push("/")}>Taka</h3>
           <div className="items">
+            <Select
+              className="select"
+              value={lang}
+              onChange={async (e) =>
+                await setLanguage(e.target.value as string)
+              }
+              style={{ border: "none" }}
+            >
+              <MenuItem value="en">EN</MenuItem>
+              <MenuItem value="pt-BR">PT-BR</MenuItem>
+            </Select>
             {!isMobile &&
               appBarItems.map((appBarItem) => (
                 <motion.div
@@ -75,8 +90,9 @@ export default function AppBar({
                   {appBarItem.label}
                 </motion.div>
               ))}
+
             {isMobile && (
-              <IconButton onClick={onNavOpen}>
+              <IconButton style={{ marginLeft: 24 }} onClick={onNavOpen}>
                 <MenuIcon />
               </IconButton>
             )}
