@@ -32,6 +32,7 @@ export default function FormC() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [otherDate, setOtherData] = useState<Date | null>(new Date());
   const [name, setName] = useState("");
+  const [nick, setNick] = useState("");
   const [nameOther, setNameOther] = useState("");
   const [tipo, setTipo] = useState<"Eu" | "Parente" | "Outro">("Eu");
 
@@ -79,6 +80,7 @@ export default function FormC() {
         user_id: "user_auNcVu0d5vqKOAjBnKuVi",
         template_params: {
           name: name,
+          nickname: nick,
           birth: selectedDate.toISOString(),
           forWho: tipo,
           otherName: nameOther,
@@ -111,6 +113,7 @@ export default function FormC() {
     instanceSelf
       .post(`/api/user`, {
         name: name,
+        nickname: nick,
         birth: selectedDate.toISOString(),
         forWho: tipo,
         otherName: nameOther,
@@ -193,6 +196,17 @@ export default function FormC() {
       <h1>Termos Formulário</h1>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container spacing={5}>
+          <Grid item lg={12}>
+            <TextField
+              onChange={(e) => setNick(e.target.value)}
+              value={nick}
+              fullWidth
+              name="nick"
+              label="Nickname"
+              placeholder="Dirscord, Twitter or other"
+              required
+            />
+          </Grid>
           <Grid item lg={12}>
             <TextField
               onChange={(e) => setName(e.target.value)}

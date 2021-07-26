@@ -12,8 +12,6 @@ export const FormC = dynamic(() => import("../../src/contract/formC"), {
 export async function getStaticProps() {
   var { data: terms } = await instanceSelf.get("/api/contract");
 
-  console.log(`data`, terms);
-
   return {
     props: { terms },
   };
@@ -22,12 +20,6 @@ export async function getStaticProps() {
 export default function ContractPage({ terms }) {
   const [accept, setAccept] = useState(false);
   const { lang } = useTranslation();
-
-  // useEffect(() => {
-  //   axios.get("/api/contract").then((res) => {
-  //     setData(res.data);
-  //   });
-  // }, []);
 
   return (
     <div
