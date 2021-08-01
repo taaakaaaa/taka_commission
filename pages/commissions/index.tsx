@@ -3,11 +3,11 @@ import React from "react";
 import Commissions from "../../src/commissions";
 import { instanceSelf } from "../../src/shared/api";
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   var { data } = await instanceSelf.get("/api/commissions");
 
   return {
-    props: { data },
+    props: { data, revalidate: 300 },
   };
 }
 
