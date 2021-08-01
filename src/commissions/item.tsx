@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { CommissionsItemContainer } from "./styles";
 import ReactImageMagnify from "react-image-magnify";
 import DialogCommissions from "./dialog";
@@ -13,6 +13,7 @@ export default function CommissionsItem({
 }) {
   const { push } = useRouter();
   const [open, setOpen] = useState(false);
+  const [height, setHeight] = useState(300);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -21,6 +22,16 @@ export default function CommissionsItem({
   const handleClose = () => {
     setOpen(false);
   };
+
+  const div = useCallback((node) => {
+    if (node !== null) {
+      console.log(
+        `node.getBoundingClientRect().height`,
+        node.getBoundingClientRect().height
+      );
+      setHeight(node.getBoundingClientRect().height);
+    }
+  }, []);
 
   return (
     <>
@@ -39,7 +50,17 @@ export default function CommissionsItem({
           />
           <motion.h1>{subTag.titulo}</motion.h1>
         </div>
-        <motion.div initial={{ x: -100 }} animate={{ x: 0 }} className="images">
+        <motion.div
+          ref={div}
+          drag="x"
+          initial={{ x: -100 }}
+          animate={{ x: 0 }}
+          className="images"
+          dragConstraints={{
+            right: art.length * 350,
+            left: 0,
+          }}
+        >
           {art.map((image) => (
             <ImageItem key={image._id} image={image.url} />
           ))}

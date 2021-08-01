@@ -24,10 +24,12 @@ import CartCard from "../drawer/item";
 import axios from "axios";
 import Confetti from "react-confetti";
 import { FormContractContainer } from "./styles";
+import useTranslation from "next-translate/useTranslation";
 
 export default function FormC() {
   const { clearOrders } = useOrder();
   const { orders: cardItems, closeOrder, editOrder } = useOrder();
+  const { t } = useTranslation();
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [otherDate, setOtherData] = useState<Date | null>(new Date());
@@ -182,7 +184,9 @@ export default function FormC() {
     >
       {cardItems.length > 0 && (
         <FormContractContainer>
-          <h2>Pedidos ({cardItems.length})</h2>
+          <h2>
+            {t("contract:orders")} ({cardItems.length})
+          </h2>
           {cardItems.map((cardItem) => (
             <CartCard
               onDescEdit={editOrder}
@@ -193,7 +197,7 @@ export default function FormC() {
           ))}
         </FormContractContainer>
       )}
-      <h1>Termos Formulário</h1>
+      <h1>{t("contract:titleForm")}</h1>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container spacing={5}>
           <Grid item lg={12}>
@@ -202,8 +206,8 @@ export default function FormC() {
               value={nick}
               fullWidth
               name="nick"
-              label="Nickname"
-              placeholder="Dirscord, Twitter or other"
+              label={t("contract:nickplace")}
+              placeholder={t("contract:nickplace")}
               required
             />
           </Grid>
@@ -213,7 +217,7 @@ export default function FormC() {
               value={name}
               fullWidth
               name="name"
-              label="Nome completo"
+              label={t("contract:name")}
               required
             />
           </Grid>
@@ -222,12 +226,12 @@ export default function FormC() {
               fullWidth
               margin="normal"
               id="date-picker-dialog"
-              label="Data de nascimento"
+              label={t("contract:birth")}
               format="dd/MM/yyyy"
               name="birth"
               value={selectedDate}
               onChange={handleDateChange}
-              helperText="dia/mes/ano"
+              helperText={t("contract:dateForm")}
               KeyboardButtonProps={{
                 "aria-label": "change date",
               }}
@@ -237,7 +241,7 @@ export default function FormC() {
           <Grid item lg={12}>
             <FormControl component="fieldset">
               <FormLabel component="legend">
-                Quem realizara o pagamento
+                {t("contract:whoPayment")}
               </FormLabel>
               <br />
               <RadioGroup
@@ -250,12 +254,12 @@ export default function FormC() {
                 <FormControlLabel
                   value="Parente"
                   control={<Radio />}
-                  label="Parente"
+                  label={t("contract:parentet")}
                 />
                 <FormControlLabel
                   value="Outro"
                   control={<Radio />}
-                  label="Outro"
+                  label={t("contract:other")}
                 />
               </RadioGroup>
             </FormControl>
@@ -265,7 +269,7 @@ export default function FormC() {
               <h3
                 style={{ paddingLeft: 19, paddingBottom: 0, marginBottom: 0 }}
               >
-                Dados {tipo}
+                {t("contract:data")} {tipo}
               </h3>
               <Grid item lg={12}>
                 <TextField
@@ -274,7 +278,7 @@ export default function FormC() {
                   name="nameOther"
                   onChange={(e) => setNameOther(e.target.value)}
                   value={nameOther}
-                  label={`Nome completo ${tipo.toLowerCase()}`}
+                  label={`${t("contract:name")} ${tipo.toLowerCase()}`}
                 />
               </Grid>
               <Grid item lg={12}>
@@ -283,12 +287,12 @@ export default function FormC() {
                   required={tipo === "Outro" || tipo === "Parente"}
                   margin="normal"
                   id="date-picker-dialog"
-                  label={`Data de nascimento ${tipo.toLowerCase()}`}
+                  label={`${t("contract:birth")} ${tipo.toLowerCase()}`}
                   format="dd/MM/yyyy"
                   name="birth"
                   value={otherDate}
                   onChange={handleOtherDateChange}
-                  helperText="dia/mes/ano"
+                  helperText={t("contract:dateForm")}
                   KeyboardButtonProps={{
                     "aria-label": "change date",
                   }}
@@ -299,10 +303,7 @@ export default function FormC() {
         </Grid>
       </MuiPickersUtilsProvider>
       <br />
-      <Alert severity="info">
-        Se você mentir sobre qualquer informação, você está sujeito a sujeito a
-        ações jurídicas
-      </Alert>
+      <Alert severity="info">{t("contract:alert")}</Alert>
       <Button
         style={{ position: "relative", margin: "30px 0px" }}
         onClick={() => {}}
@@ -314,7 +315,7 @@ export default function FormC() {
           scale: 0.95,
         }}
       >
-        Enviar
+        {t("contract:send")}
       </Button>
     </form>
   );

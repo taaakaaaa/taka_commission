@@ -47,6 +47,7 @@ export const CommissionsContainer = styled.div`
 export const CommissionsItemContainer = styled.div`
   max-width: 1366px;
   margin: 100px auto;
+  overflow-x: hidden;
   @media only screen and (max-width: 1024px) {
     margin: 50px auto;
   }
@@ -113,11 +114,11 @@ export const CommissionsItemContainer = styled.div`
   }
 
   .images {
-    scroll-snap-type: x mandatory;
+    cursor: grab;
+    /* scroll-snap-type: x mandatory; */
     display: flex;
     justify-content: flex-end;
     gap: 60px;
-    overflow-x: auto;
     position: relative;
 
     /* width */
@@ -254,6 +255,7 @@ export const CommissionsCardContainer = styled(motion.div)`
 
     object-fit: cover;
     border-radius: 29px;
+    object-position: top;
   }
 
   .info {

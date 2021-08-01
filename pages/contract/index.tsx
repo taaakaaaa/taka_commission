@@ -19,7 +19,7 @@ export async function getStaticProps() {
 
 export default function ContractPage({ terms }) {
   const [accept, setAccept] = useState(false);
-  const { lang } = useTranslation();
+  const { lang, t } = useTranslation();
 
   return (
     <div
@@ -34,7 +34,7 @@ export default function ContractPage({ terms }) {
         <FormC />
       ) : (
         <>
-          <h1>Termos</h1>
+          <h1>{t("contract:title")}</h1>
           {terms?.term ? (
             <div
               dangerouslySetInnerHTML={{
@@ -55,7 +55,7 @@ export default function ContractPage({ terms }) {
               scale: 0.95,
             }}
           >
-            li e aceito os termos
+            {t("contract:accep")}
           </Button>
         </>
       )}

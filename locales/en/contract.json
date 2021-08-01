@@ -1,0 +1,17 @@
+{
+  "title": "Terms",
+  "titleForm": "Form Terms",
+  "orders": "Orders",
+  "data": "Information",
+
+  "accep": "I have read and accept the terms and conditions",
+  "nickplace": "Dirscord, Twitter or other",
+  "name": "Full name",
+  "birth": "Date of birth",
+  "dateForm": "day/month/year",
+  "whoPayment": "Who will pay",
+  "parentet": "Parent",
+  "other": "Other",
+  "alert": "If you lie about any information, you are subject to legal action.",
+  "send": "Send"
+}
