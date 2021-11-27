@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Snackbar } from "@material-ui/core";
-import Alert from "@material-ui/lab/Alert";
+import { Snackbar } from "@mui/material";
+import Alert from '@mui/material/Alert';
 import { useAlert } from "../../../pages/_app";
 
 export default function AlertTaka() {

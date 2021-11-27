@@ -1,8 +1,10 @@
 import React from "react";
-import Badge from "@material-ui/core/Badge";
-import { Theme, withStyles, createStyles } from "@material-ui/core/styles";
-import IconButton from "@material-ui/core/IconButton";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import Badge from "@mui/material/Badge";
+import { Theme } from "@mui/material/styles";
+import withStyles from '@mui/styles/withStyles';
+import createStyles from '@mui/styles/createStyles';
+import IconButton from "@mui/material/IconButton";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useOrder } from "../../pages/_app";
 
 const StyledBadge = withStyles((theme: Theme) =>
@@ -27,7 +29,7 @@ export default function Card({ onCardClick }: { onCardClick: () => void }) {
       style={{ color: "white" }}
       className="item"
       aria-label="cart"
-    >
+      size="large">
       <StyledBadge badgeContent={cardItems.length} color="secondary">
         <ShoppingCartIcon />
       </StyledBadge>

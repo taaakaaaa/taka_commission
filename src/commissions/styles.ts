@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 export const CommissionsContainer = styled.div`
   max-width: 1366px;
@@ -117,8 +117,8 @@ export const CommissionsItemContainer = styled.div`
     cursor: grab;
     /* scroll-snap-type: x mandatory; */
     display: flex;
-    justify-content: flex-end;
-    gap: 60px;
+    justify-content: flex-start;
+    gap: 30px;
     position: relative;
 
     /* width */
@@ -162,6 +162,8 @@ export const CommissionsItemContainer = styled.div`
 
       .info-zoom {
         border-radius: 30px;
+
+        background-color: rgba(0, 0, 0, 0.9);
       }
     }
   }

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { DrawerCardProps } from ".";
 
 export const DrawerContainer = styled.div<DrawerCardProps>`

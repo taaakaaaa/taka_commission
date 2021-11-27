@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 export const PortContainer = styled.div`
   max-width: 1366px;
@@ -81,21 +81,21 @@ export const PortContainer = styled.div`
       grid-template-columns: repeat(4, minmax(auto, 300px));
       grid-auto-rows: 1fr;
       grid-auto-flow: dense;
-      gap: 50px;
+      gap: 30px;
 
       @media only screen and (max-width: 1400px) {
-        padding: 30px 50px;
+        padding: 30px 0px;
       }
 
       @media only screen and (max-width: 1024px) {
         grid-template-columns: repeat(3, minmax(auto, 28.5rem));
         gap: 30px;
-        padding: 30px 50px;
+        padding: 30px 0px;
       }
 
       @media only screen and (max-width: 600px) {
         grid-template-columns: repeat(2, minmax(auto, 28.5rem));
-        padding: 30px 30px;
+        padding: 30px 0px;
         gap: 15px;
       }
 
@@ -110,9 +110,11 @@ export const PortContainer = styled.div`
         position: relative;
         cursor: pointer;
 
-        border-radius: 30px;
+        border-radius: 26px;
         :hover {
           object-fit: contain;
+          object-position: center;
+
           background: #323232;
         }
       }
@@ -168,6 +170,10 @@ export const PortItemContainer = styled.div`
       max-width: 100%;
       object-fit: cover;
     }
+
+    .info-zoom {
+      background-color: rgba(0, 0, 0, 0.9);
+    }
   }
   .recomendacoes {
     overflow: hidden;
@@ -191,8 +197,31 @@ export const PortItemContainer = styled.div`
       display: flex;
       flex-wrap: nowrap;
       overflow-x: auto;
-      gap: 60px;
+      gap: 30px;
       -webkit-overflow-scrolling: touch;
+
+      /* width */
+      ::-webkit-scrollbar {
+        height: 12px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 10px;
+        margin: 15px 30px;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
 
       img {
         flex: 0 0 auto;
@@ -207,7 +236,7 @@ export const PortItemContainer = styled.div`
         position: relative;
         cursor: pointer;
 
-        border-radius: 30px;
+        border-radius: 26px;
         :hover {
           padding: 15px 0px;
           object-fit: contain;

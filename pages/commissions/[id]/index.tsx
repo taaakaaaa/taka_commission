@@ -15,7 +15,7 @@ export async function getServerSideProps(ctx) {
   );
 
   return {
-    props: { data },
+    props: { data, revalidate: 300 },
   };
 }
 

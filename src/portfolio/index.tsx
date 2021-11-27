@@ -6,6 +6,7 @@ import { instanceSelf } from "../shared/api";
 import Title from "../shared/title";
 import { Empty } from "../shared/Empty";
 import { PortContainer } from "./styles";
+import { CircularProgress } from "@mui/material";
 
 export interface IPortItem {
   tag: ITakaTag;
@@ -72,7 +73,9 @@ export default function Portfolio({ tags }: { tags: ITakaTag[] }) {
         >
           <div>
             {!images ? (
-              <div>Carregando</div>
+              <div style={{ margin: "40px auto" }}>
+                <CircularProgress />
+              </div>
             ) : (
               images.map((item) => (
                 <div key={item.tag._id}>

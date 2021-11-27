@@ -1,8 +1,11 @@
 import {
   CircularProgress,
-  createMuiTheme,
+  createTheme,
   ThemeProvider,
-} from "@material-ui/core";
+  Theme,
+  StyledEngineProvider,
+  adaptV4Theme,
+} from "@mui/material";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import React, {
@@ -20,13 +23,20 @@ import "../styles/globals.css";
 import { useAlertProvider } from "../src/shared/alert/useAlertProvider";
 import AlertTaka from "../src/shared/alert";
 
+
+declare module '@mui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  interface DefaultTheme extends Theme {}
+}
+
+
 export const AppBar = dynamic(() => import("../src/appbar"), {
   ssr: false,
 });
 
-const theme = createMuiTheme({
+const theme = createTheme(adaptV4Theme({
   palette: {
-    type: "dark",
+    mode: "dark",
     primary: {
       main: "#A3B5FF",
     },
@@ -34,7 +44,7 @@ const theme = createMuiTheme({
       main: "#DD5175",
     },
   },
-});
+}));
 
 export interface ITakaOrder {
   description: string;
@@ -101,21 +111,23 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <div>
-      <ThemeProvider theme={theme}>
-        <AlertContext.Provider value={alert}>
-          <OrderContext.Provider value={order}>
-            <AlertTaka />
-            <AppBar
-              open={openNav}
-              onNavClose={() => setOpenNav(false)}
-              onNavOpen={() => setOpenNav(true)}
-              onCardClick={() => setOpen(true)}
-            />
-            <Component {...pageProps} />
-            <DrawerCard onCardClose={() => setOpen(false)} open={open} />
-          </OrderContext.Provider>
-        </AlertContext.Provider>
-      </ThemeProvider>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <AlertContext.Provider value={alert}>
+            <OrderContext.Provider value={order}>
+              <AlertTaka />
+              <AppBar
+                open={openNav}
+                onNavClose={() => setOpenNav(false)}
+                onNavOpen={() => setOpenNav(true)}
+                onCardClick={() => setOpen(true)}
+              />
+              <Component {...pageProps} />
+              <DrawerCard onCardClose={() => setOpen(false)} open={open} />
+            </OrderContext.Provider>
+          </AlertContext.Provider>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </div>
   );
 }

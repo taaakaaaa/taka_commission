@@ -1,16 +1,16 @@
-import { Grid, TextField } from "@material-ui/core";
-import AppBar from "@material-ui/core/AppBar";
-import Dialog from "@material-ui/core/Dialog";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Slide from "@material-ui/core/Slide";
-import Toolbar from "@material-ui/core/Toolbar";
-import { TransitionProps } from "@material-ui/core/transitions";
-import Typography from "@material-ui/core/Typography";
-import CloseIcon from "@material-ui/icons/Close";
+import { Grid, TextField } from "@mui/material";
+import AppBar from "@mui/material/AppBar";
+import Dialog from "@mui/material/Dialog";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import Slide from "@mui/material/Slide";
+import Toolbar from "@mui/material/Toolbar";
+import { TransitionProps } from "@mui/material/transitions";
+import Typography from "@mui/material/Typography";
+import CloseIcon from "@mui/icons-material/Close";
 import React, { useState } from "react";
 import { useAlert, useOrder } from "../../pages/_app";
 import { Button } from "./styles";
@@ -49,7 +49,7 @@ export default function DialogCommissions({
             color="inherit"
             onClick={handleClose}
             aria-label="close"
-          >
+            size="large">
             <CloseIcon />
           </IconButton>
           <Typography variant="h6">Adicionar ao carrinho</Typography>

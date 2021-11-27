@@ -1,12 +1,12 @@
-import { MenuItem, Select, useMediaQuery } from "@material-ui/core";
+import { MenuItem, Select, useMediaQuery } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { useRouter } from "next/router";
 import React, { useCallback, useEffect } from "react";
 import Card from "./Card";
 import { AppBarContainer, SidenavContainer } from "./styles";
-import { IconButton } from "@material-ui/core";
-import MenuIcon from "@material-ui/icons/Menu";
-import CloseIcon from "@material-ui/icons/Close";
+import { IconButton } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import useTranslation from "next-translate/useTranslation";
 import setLanguage from "next-translate/setLanguage";
 
@@ -70,12 +70,12 @@ export default function AppBar({
           <h3 onClick={() => history.push("/")}>Taka</h3>
           <div className="items">
             <Select
+              variant="standard"
               className="select"
               value={lang}
               onChange={async (e) =>
                 await setLanguage(e.target.value as string)
               }
-              style={{ border: "none" }}
             >
               <MenuItem value="en">EN</MenuItem>
               <MenuItem value="pt-BR">PT-BR</MenuItem>
@@ -92,7 +92,11 @@ export default function AppBar({
               ))}
 
             {isMobile && (
-              <IconButton style={{ marginLeft: 24 }} onClick={onNavOpen}>
+              <IconButton
+                style={{ marginLeft: 24 }}
+                onClick={onNavOpen}
+                size="large"
+              >
                 <MenuIcon />
               </IconButton>
             )}
@@ -114,7 +118,7 @@ export default function AppBar({
             }}
             animate={{ x: "0%" }}
           >
-            <IconButton className="closeIcon" onClick={onNavClose}>
+            <IconButton className="closeIcon" onClick={onNavClose} size="large">
               <CloseIcon />
             </IconButton>
             {appBarItems.map((appBarItem) => (

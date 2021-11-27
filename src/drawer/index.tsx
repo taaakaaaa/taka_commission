@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic";
-import { IconButton } from "@material-ui/core";
-import CloseIcon from "@material-ui/icons/Close";
+import { IconButton } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
@@ -36,7 +36,7 @@ export default function DrawerCard({ open, onCardClose }: DrawerCardProps) {
         className="content"
       >
         <div className="close">
-          <IconButton onClick={onCardClose} className="icon">
+          <IconButton onClick={onCardClose} className="icon" size="large">
             <CloseIcon />
           </IconButton>
         </div>

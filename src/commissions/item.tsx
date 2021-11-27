@@ -32,6 +32,7 @@ export default function CommissionsItem({
       setHeight(node.getBoundingClientRect().height);
     }
   }, []);
+  console.log(200 * art.length);
 
   return (
     <>
@@ -57,8 +58,8 @@ export default function CommissionsItem({
           animate={{ x: 0 }}
           className="images"
           dragConstraints={{
-            right: art.length * 350,
-            left: 0,
+            right: 0,
+            left: 393 * (art.length - 3) * -1,
           }}
         >
           {art.map((image) => (

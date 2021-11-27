@@ -1,6 +1,6 @@
 import { motion, Variants } from "framer-motion";
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 const TitleContainer = styled(motion.h1)`
   letter-spacing: 6px;
