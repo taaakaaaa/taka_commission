@@ -39,7 +39,6 @@ export const FormContractContainer = styled.div`
       font-weight: 500;
       font-size: 22px;
       line-height: 38px;
-      /* identical to box height */
 
       letter-spacing: 0.1em;
 
@@ -69,6 +68,11 @@ export const FormContractContainer = styled.div`
       padding: 15px 0px;
     }
   }
+`;
+export const FormContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 export const FormContract = styled.form`
   max-width: 800px;

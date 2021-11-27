@@ -5,9 +5,10 @@ import React, { useState } from "react";
 import { Button } from "../../src/commissions/styles";
 import { instanceSelf } from "../../src/shared/api";
 
-export const FormC = dynamic(() => import("../../src/contract/formC"), {
-  ssr: false,
-});
+import FormC from "../../src/contract/formC";
+// export const FormC = dynamic(() => import("../../src/contract/formC"), {
+//   ssr: false,
+// });
 
 export async function getStaticProps() {
   var { data: terms } = await instanceSelf.get("/api/contract");
@@ -54,7 +55,7 @@ export default function ContractPage({ terms }) {
               <div>Loading...</div>
             )}
             <Button
-              style={{ position: "relative", margin: "50px 0px" }}
+              style={{ position: "relative", margin: "00px 0px 50px" }}
               onClick={() => setAccept(true)}
               whileHover={{
                 y: -5,

@@ -9,21 +9,26 @@ import {
   Radio,
   RadioGroup,
 } from "@mui/material";
-import { Alert } from '@mui/material';
+import { Alert } from "@mui/material";
 import { Button } from "../commissions/styles";
-import {
-  KeyboardDatePicker,
-  MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
-import "date-fns";
-import DateFnsUtils from "@date-io/date-fns";
+// import {
+//   KeyboardDatePicker,
+//   MuiPickersUtilsProvider,
+// } from "@material-ui/pickers";
+// import "date-fns";
+
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DatePicker from "@mui/lab/DatePicker";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+
+// import DateFnsUtils from "@date-io/date-fns";
 import { instanceSelf } from "../shared/api";
 import DoneIcon from "@mui/icons-material/Done";
 import { useOrder } from "../../pages/_app";
 import CartCard from "../drawer/item";
 import axios from "axios";
 import Confetti from "react-confetti";
-import { FormContractContainer } from "./styles";
+import { FormContractContainer, FormContainer } from "./styles";
 import useTranslation from "next-translate/useTranslation";
 
 export default function FormC() {
@@ -176,7 +181,7 @@ export default function FormC() {
     );
 
   return (
-    <form
+    <FormContainer
       onSubmit={(e) => {
         e.preventDefault();
         send();
@@ -198,114 +203,112 @@ export default function FormC() {
         </FormContractContainer>
       )}
       <h1>{t("contract:titleForm")}</h1>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Grid container spacing={5}>
-          <Grid item lg={12}>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <TextField
+          onChange={(e) => setNick(e.target.value)}
+          value={nick}
+          fullWidth
+          name="nick"
+          label={t("contract:nickplace")}
+          placeholder={t("contract:nickplace")}
+          required
+        />
+        <TextField
+          onChange={(e) => setName(e.target.value)}
+          value={name}
+          fullWidth
+          name="name"
+          label={t("contract:name")}
+          required
+        />
+        {/* <KeyboardDatePicker
+          fullWidth
+          margin="normal"
+          id="date-picker-dialog"
+          label={t("contract:birth")}
+          format="dd/MM/yyyy"
+          name="birth"
+          value={selectedDate}
+          onChange={handleDateChange}
+          helperText={t("contract:dateForm")}
+          KeyboardButtonProps={{
+            "aria-label": "change date",
+          }}
+          required
+        /> */}
+        <DatePicker
+          label={t("contract:birth")}
+          inputFormat="dd/MM/yyyy"
+          value={selectedDate}
+          onChange={handleDateChange}
+          renderInput={(params) => (
             <TextField
-              onChange={(e) => setNick(e.target.value)}
-              value={nick}
-              fullWidth
-              name="nick"
-              label={t("contract:nickplace")}
-              placeholder={t("contract:nickplace")}
-              required
-            />
-          </Grid>
-          <Grid item lg={12}>
-            <TextField
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-              fullWidth
-              name="name"
-              label={t("contract:name")}
-              required
-            />
-          </Grid>
-          <Grid item lg={12}>
-            <KeyboardDatePicker
-              fullWidth
-              margin="normal"
-              id="date-picker-dialog"
-              label={t("contract:birth")}
-              format="dd/MM/yyyy"
+              {...params}
               name="birth"
-              value={selectedDate}
-              onChange={handleDateChange}
               helperText={t("contract:dateForm")}
-              KeyboardButtonProps={{
-                "aria-label": "change date",
-              }}
+              fullWidth
               required
+              id="date-picker-dialog"
             />
-          </Grid>
-          <Grid item lg={12}>
-            <FormControl component="fieldset">
-              <FormLabel component="legend">
-                {t("contract:whoPayment")}
-              </FormLabel>
-              <br />
-              <RadioGroup
-                value={tipo}
-                onChange={(e) =>
-                  setTipo(e.target.value as "Eu" | "Parente" | "Outro")
-                }
-              >
-                <FormControlLabel value="Eu" control={<Radio />} label="Eu" />
-                <FormControlLabel
-                  value="Parente"
-                  control={<Radio />}
-                  label={t("contract:parentet")}
-                />
-                <FormControlLabel
-                  value="Outro"
-                  control={<Radio />}
-                  label={t("contract:other")}
-                />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          {(tipo === "Outro" || tipo === "Parente") && (
-            <>
-              <h3
-                style={{ paddingLeft: 19, paddingBottom: 0, marginBottom: 0 }}
-              >
-                {t("contract:data")} {tipo}
-              </h3>
-              <Grid item lg={12}>
-                <TextField
-                  required={tipo === "Outro" || tipo === "Parente"}
-                  fullWidth
-                  name="nameOther"
-                  onChange={(e) => setNameOther(e.target.value)}
-                  value={nameOther}
-                  label={`${t("contract:name")} ${tipo.toLowerCase()}`}
-                />
-              </Grid>
-              <Grid item lg={12}>
-                <KeyboardDatePicker
-                  fullWidth
-                  required={tipo === "Outro" || tipo === "Parente"}
-                  margin="normal"
-                  id="date-picker-dialog"
-                  label={`${t("contract:birth")} ${tipo.toLowerCase()}`}
-                  format="dd/MM/yyyy"
-                  name="birth"
-                  value={otherDate}
-                  onChange={handleOtherDateChange}
-                  helperText={t("contract:dateForm")}
-                  KeyboardButtonProps={{
-                    "aria-label": "change date",
-                  }}
-                />
-              </Grid>
-            </>
           )}
-        </Grid>
-      </MuiPickersUtilsProvider>
-      <br />
+        />
+        <FormControl component="fieldset">
+          <FormLabel component="legend">{t("contract:whoPayment")}</FormLabel>
+          <br />
+          <RadioGroup
+            value={tipo}
+            onChange={(e) =>
+              setTipo(e.target.value as "Eu" | "Parente" | "Outro")
+            }
+          >
+            <FormControlLabel value="Eu" control={<Radio />} label="Eu" />
+            <FormControlLabel
+              value="Parente"
+              control={<Radio />}
+              label={t("contract:parentet")}
+            />
+            <FormControlLabel
+              value="Outro"
+              control={<Radio />}
+              label={t("contract:other")}
+            />
+          </RadioGroup>
+        </FormControl>
+        {(tipo === "Outro" || tipo === "Parente") && (
+          <>
+            <h3 style={{ paddingLeft: 19, paddingBottom: 0, marginBottom: 0 }}>
+              {t("contract:data")} {tipo}
+            </h3>
+            <TextField
+              required={tipo === "Outro" || tipo === "Parente"}
+              fullWidth
+              name="nameOther"
+              onChange={(e) => setNameOther(e.target.value)}
+              value={nameOther}
+              label={`${t("contract:name")} ${tipo.toLowerCase()}`}
+            />
+            <DatePicker
+              label={`${t("contract:birth")} ${tipo.toLowerCase()}`}
+              inputFormat="dd/MM/yyyy"
+              value={otherDate}
+              onChange={handleOtherDateChange}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  name="birth"
+                  helperText={t("contract:dateForm")}
+                  fullWidth
+                  required={tipo === "Outro" || tipo === "Parente"}
+                  id="date-picker-dialog"
+                />
+              )}
+            />
+          </>
+        )}
+      </LocalizationProvider>
       <Alert severity="info">{t("contract:alert")}</Alert>
       <Button
-        style={{ position: "relative", margin: "30px 0px" }}
+        style={{ position: "relative" }}
         onClick={() => {}}
         whileHover={{
           y: -5,
@@ -317,6 +320,6 @@ export default function FormC() {
       >
         {t("contract:send")}
       </Button>
-    </form>
+    </FormContainer>
   );
 }

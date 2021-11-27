@@ -23,18 +23,16 @@ import "../styles/globals.css";
 import { useAlertProvider } from "../src/shared/alert/useAlertProvider";
 import AlertTaka from "../src/shared/alert";
 
-
-declare module '@mui/styles/defaultTheme' {
+declare module "@mui/styles/defaultTheme" {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
-
 
 export const AppBar = dynamic(() => import("../src/appbar"), {
   ssr: false,
 });
 
-const theme = createTheme(adaptV4Theme({
+const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
@@ -44,7 +42,7 @@ const theme = createTheme(adaptV4Theme({
       main: "#DD5175",
     },
   },
-}));
+});
 
 export interface ITakaOrder {
   description: string;
