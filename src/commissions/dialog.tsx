@@ -16,7 +16,9 @@ import { useAlert, useOrder } from "../../pages/_app";
 import { Button } from "./styles";
 
 const Transition = React.forwardRef(function Transition(
-  props: TransitionProps & { children?: React.ReactElement },
+  props: TransitionProps & {
+    children: React.ReactElement<any, any>;
+  },
   ref: React.Ref<unknown>
 ) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -49,7 +51,8 @@ export default function DialogCommissions({
             color="inherit"
             onClick={handleClose}
             aria-label="close"
-            size="large">
+            size="large"
+          >
             <CloseIcon />
           </IconButton>
           <Typography variant="h6">Adicionar ao carrinho</Typography>
