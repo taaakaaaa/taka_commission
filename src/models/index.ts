@@ -9,11 +9,8 @@ mongoose.models = {};
 
 export const Contract = model("Contract", contractSchema);
 export const User = model("User", userSchema);
-export const TakaArt: Model<ITakaArt> = model("TakaArt", takaArtSchema);
-export const TakaSubTag: Model<ITakaSubTag> = model(
-  "TakaSubTag",
-  takaSubTagSchema
-);
-export const TakaTag: Model<ITakaTag> = model("TakaTag", takaTagSchema);
+export const TakaArt = model<ITakaArt>("TakaArt", takaArtSchema);
+export const TakaSubTag = model<ITakaSubTag>("TakaSubTag", takaSubTagSchema);
+export const TakaTag = model<ITakaTag>("TakaTag", takaTagSchema);
 
 export type { ITakaTag, ITakaSubTag, ITakaArt };
